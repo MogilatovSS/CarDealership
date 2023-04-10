@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarDealershipBeta.ViewModel
+namespace CarDealershipBeta.Pages
 {
     /// <summary>
     /// Логика взаимодействия для Page_Cataloge.xaml

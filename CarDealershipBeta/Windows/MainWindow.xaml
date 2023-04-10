@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Привет" Click="Button_Click"/>
+        <Image Source="\Resources\6.png" Width="200" Height="200"/>
     </Grid>
 </Window>
