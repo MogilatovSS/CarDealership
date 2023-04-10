@@ -127,9 +127,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\expand-window.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close-window.png" />
+    <Resource Include="Resources\minimize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />

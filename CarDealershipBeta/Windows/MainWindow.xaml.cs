@@ -24,5 +24,75 @@ namespace CarDealershipBeta
         {
             InitializeComponent();
         }
+
+        private void TopMenu_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void ExpandButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.WindowState != WindowState.Maximized)
+            {
+                this.WindowState=WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState=WindowState.Normal;
+            }
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(MenuHumburger.Visibility == Visibility)
+            {
+                MenuHumburger.Visibility = Visibility.Hidden;
+                return;
+            }
+            MenuHumburger.Visibility = Visibility.Visible;
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogInButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BasketButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
