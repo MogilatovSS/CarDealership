@@ -1,4 +1,4 @@
-﻿<Page x:Class="CarDealershipBeta.ViewModel.Page_Cataloge"
+﻿<Page x:Class="CarDealershipBeta.Pages.Page_Cataloge"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,6 +9,6 @@
       Title="Page_Cataloge">
 
     <Grid>
-        
+        <Button Content="Ghjodshg"/>
     </Grid>
 </Page>
