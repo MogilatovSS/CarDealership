@@ -41,7 +41,7 @@
                 Visibility="Hidden">
             <StackPanel>
                 <Button Name="ProfileButton" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
-                <Button Name="LogInButton" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click"/>
+                <Button Name="LogInButton" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click" Cursor="Hand"/>
                 <Button Name="RegistrationButton" HorizontalAlignment="Left" Content="Зарегестрироваться" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="RegistrationButton_Click"/>
                 <Button Name="BasketButton" HorizontalAlignment="Left" Content="Корзина" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="BasketButton_Click"/>
                 <Separator Height="1" Width="170" Background="AliceBlue"/>
