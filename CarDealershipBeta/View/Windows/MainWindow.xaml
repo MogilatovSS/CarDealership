@@ -59,7 +59,7 @@
         <Grid Name="TopMenu" Background="Transparent" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="HomeButton" Style="{StaticResource TopMenuButton}" Content="Главная" 
+                    <Button x:Name="HomeButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Главная" 
                             Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
                             VerticalAlignment="Center" Height="60" Cursor="Hand" Command="{Binding Click_Home}"/>
                     <Button x:Name="CatalogButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Каталог" 
