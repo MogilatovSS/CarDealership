@@ -12,6 +12,9 @@
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary Source="/View/Liblary/Dictionary.xaml" />
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,7 +43,7 @@
         </Grid>
 
         <Border Name="MenuHumburger" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0 2 0 0" BorderBrush="AliceBlue"
-                CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#201869"
+                CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#663399"
                 Visibility="Hidden">
             <StackPanel>
                 <Button Name="ProfileButton" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
@@ -56,7 +59,7 @@
         <Grid Name="TopMenu" Background="Transparent" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="HomeButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Главная" 
+                    <Button x:Name="HomeButton" Style="{StaticResource TopMenuButton}" Content="Главная" 
                             Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
                             VerticalAlignment="Center" Height="60" Cursor="Hand" Command="{Binding Click_Home}"/>
                     <Button x:Name="CatalogButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Каталог" 
