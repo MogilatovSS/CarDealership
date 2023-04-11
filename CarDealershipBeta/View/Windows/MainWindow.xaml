@@ -24,11 +24,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Image Grid.ColumnSpan="2" Grid.RowSpan="2"
-               Source="\Resources\6.png" Stretch="Fill"/>
+        <Image Grid.ColumnSpan="2" Grid.Row="1"
+               Source="\Resources\Backgrounds\backgroundMain.png" Stretch="Fill"/>
+        
+        <Image Grid.ColumnSpan="2" Grid.Row="0"
+            Source="\Resources\Backgrounds\topBackgroundMain.png" Stretch="Fill"/>
 
-        <Grid Name="MenuHamburgerButton" Grid.Row="0" Grid.Column="0" Background="#663399">
-            <Border BorderThickness="0 0 0 1" BorderBrush="Black" >
+        <Grid Name="MenuHamburgerButton" Grid.Row="0" Grid.Column="0" Background="Transparent">
+            <Border BorderThickness="0 0 0 1" BorderBrush="Gray" Cursor="" >
                 <Button x:Name="HamburgerButton" Style="{StaticResource MaterialDesignFlatDarkButton}" 
                         Foreground="#D8BFD8" HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" 
                         FontSize="36" Content="&#xE700;" Width="80" Height="60" Cursor="Hand" Click="HamburgerButton_Click"
@@ -37,7 +40,7 @@
         </Grid>
 
         <Border Name="MenuHumburger" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0 2 0 0" BorderBrush="AliceBlue"
-                CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#663399"
+                CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#201869"
                 Visibility="Hidden">
             <StackPanel>
                 <Button Name="ProfileButton" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
@@ -49,9 +52,9 @@
                 <Button Name="LogOutButton"  HorizontalAlignment="Left" Content="Выйти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogOutButton_Click" Cursor="Hand"/>
             </StackPanel>
         </Border>
-
-        <Grid Name="TopMenu" Background="#663399" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
-            <Border BorderThickness="0 0 0 1" BorderBrush="Black">
+        
+        <Grid Name="TopMenu" Background="Transparent" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
+            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="HomeButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Главная" 
                             Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
