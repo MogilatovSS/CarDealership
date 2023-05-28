@@ -64,7 +64,6 @@
                 </Grid>
             </StackPanel>
         </Border>
-        
         <Grid Name="TopMenu" Background="Transparent" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal">
