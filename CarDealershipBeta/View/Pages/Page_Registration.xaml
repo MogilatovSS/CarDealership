@@ -1,0 +1,34 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_Registration"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Registration">
+
+
+    <Grid Background="MediumSeaGreen">
+        <Image  HorizontalAlignment="Left" Stretch="Fill" Source="\Resources\Backgrounds\backgroundLogInOut.png" Width="1337" Margin="-53,0,0,0" />
+
+        <Border MinWidth="400" MaxWidth="400" Height="350" Margin="15" Background="white" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel x:Name="Panel">
+                <TextBlock Text="Cоздать профиль" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+
+                <TextBox x:Name="Login" Text="{Binding Login}" materialDesign:HintAssist.Hint="Введите логин"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="Password" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="TwoPassword" materialDesign:HintAssist.Hint="Повторно введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox x:Name="Email" Text="{Binding Email}" materialDesign:HintAssist.Hint="Адрес эл. почты"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Grid Margin="0 0 0 20">
+                    <Button Content="Зарегистрироваться" Margin="0 20" Width="175" Cursor="Hand" Click="Reg_Button"/>
+                    <Button HorizontalAlignment="Right" Content="Войти" Click="LogIn_Button" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

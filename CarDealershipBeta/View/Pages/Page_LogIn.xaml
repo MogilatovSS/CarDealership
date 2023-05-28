@@ -1,0 +1,29 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_LogIn"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="LogIn">
+
+    <Grid Background="MediumSeaGreen">
+        <Image  HorizontalAlignment="Left" Stretch="Fill" Source="\Resources\Backgrounds\backgroundLogInOut.png" Width="1337" Margin="-53,0,0,0" />
+
+        <Border MinWidth="200" MaxWidth="300" Margin="15" Background="white" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel x:Name="Panel">
+                <TextBlock Text="Войти" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                <TextBox x:Name="Login" Text="{Binding Login}" materialDesign:HintAssist.Hint="Введите логин"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="Password" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button  Content="Войти" Margin="0 20 0 0" Width="175" Cursor="Hand" Click="LogIn_Button"/>
+                <Button  HorizontalAlignment="Center" Content="Зарегистрироваться" FontSize="10" Click="Registration_Button" Style="{StaticResource MaterialDesignFlatButton}"/>
+                <TextBlock Name="Nope" Text="Пользователь не найден." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Visibility="Hidden"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

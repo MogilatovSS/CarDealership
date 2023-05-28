@@ -9,9 +9,11 @@
         mc:Ignorable="d"
         Title="CarDealership" Height="720" Width="1280" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
+    
     <Window.Resources>
         <ResourceDictionary Source="/View/Liblary/Dictionary.xaml" />
     </Window.Resources>
@@ -26,65 +28,74 @@
             <RowDefinition MaxHeight="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
+        
         <Image Grid.ColumnSpan="2" Grid.Row="1"
                Source="\Resources\Backgrounds\backgroundMain.png" Stretch="Fill"/>
         
         <Image Grid.ColumnSpan="2" Grid.Row="0"
             Source="\Resources\Backgrounds\topBackgroundMain.png" Stretch="Fill"/>
 
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="2" 
+               NavigationUIVisibility="Hidden" Content="{Binding CurPage}"/>
+
+        <Frame x:Name="FrameLogInRegistration" VerticalAlignment="Center"
+               HorizontalAlignment="Center" NavigationUIVisibility="Hidden"
+               Width="1280" Height="720" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
         <Grid Name="MenuHamburgerButton" Grid.Row="0" Grid.Column="0" Background="Transparent">
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray" Cursor="" >
-                <Button x:Name="HamburgerButton" Style="{StaticResource MaterialDesignFlatDarkButton}" 
+                <Button x:Name="HamburgerButton" Style="{StaticResource NumbergerButton}" 
                         Foreground="#D8BFD8" HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" 
                         FontSize="36" Content="&#xE700;" Width="80" Height="60" Cursor="Hand" Click="HamburgerButton_Click"
                         VerticalAlignment="Top"/>
             </Border>
         </Grid>
-
         <Border Name="MenuHumburger" Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0 2 0 0" BorderBrush="AliceBlue"
                 CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#663399"
                 Visibility="Hidden">
             <StackPanel>
                 <Button Name="ProfileButton" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
-                <Button Name="LogInButton" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click" Cursor="Hand"/>
-                <Button Name="RegistrationButton" HorizontalAlignment="Left" Content="Зарегестрироваться" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="RegistrationButton_Click"/>
+                <Button Name="FavouriteButton" HorizontalAlignment="Left" Content="Избранное" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="FavouritesButton_Click" Cursor="Hand"/>
                 <Button Name="BasketButton" HorizontalAlignment="Left" Content="Корзина" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="BasketButton_Click"/>
                 <Separator Height="1" Width="170" Background="AliceBlue"/>
-                <Button Name="ResetButton" HorizontalAlignment="Left" Content="Обновить" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ResetButton_Click"/>
-                <Button Name="LogOutButton"  HorizontalAlignment="Left" Content="Выйти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogOutButton_Click" Cursor="Hand"/>
+                <Grid>
+                    <Button Name="LogInButton" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click" Cursor="Hand"/>
+                    <Button Name="LogOutButton" Visibility="Hidden" HorizontalAlignment="Left" Content="Выйти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogOutButton_Click" Cursor="Hand"/>
+                </Grid>
             </StackPanel>
         </Border>
         
         <Grid Name="TopMenu" Background="Transparent" Grid.Row="0" Grid.Column="1" MouseDown="TopMenu_MouseDown">
             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="HomeButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Главная" 
-                            Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
-                            VerticalAlignment="Center" Height="60" Cursor="Hand" Command="{Binding Click_Home}"/>
-                    <Button x:Name="CatalogButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Каталог" 
-                            Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
-                            VerticalAlignment="Center" Height="60"  Cursor="Hand" Command="{Binding Click_Cataloge}"/>
-                    <Button x:Name="OtziveButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="Сервис"
-                            Foreground="#D8BFD8" FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
-                            VerticalAlignment="Center" Height="60"  Cursor="Hand" Command="{Binding Click_Service}"/>
-                    <Button x:Name="InfButton" Style="{StaticResource MaterialDesignFlatDarkButton}" Content="О нас" 
-                            Foreground="#D8BFD8"  FontSize="26" FontFamily="Bahnschrift SemiLight SemiCondensed" 
-                            VerticalAlignment="Center" Height="60"  Cursor="Hand" Command="{Binding Click_Inf}" />
+                    <Button x:Name="HomeButton" Content="Главная" Style="{StaticResource TopMenuButtons}" 
+                            Command="{Binding Click_Home}" Cursor="Hand"/>
+                    <Button x:Name="CatalogButton" Content="Каталог" Style="{StaticResource TopMenuButtons}"
+                            Command="{Binding Click_Cataloge}" Cursor="Hand"/>
+                    <Button x:Name="OtziveButton" Content="Сервис" Style="{StaticResource TopMenuButtons}"
+                            Command="{Binding Click_Service}" Cursor="Hand"/>
+                    <Button x:Name="InfButton" Content="О нас" Style="{StaticResource TopMenuButtons}"
+                            Command="{Binding Click_Inf}" Cursor="Hand" />
+                    <Button x:Name="WarehouseButton" Content="Склад" Style="{StaticResource TopMenuButtons}"
+                            Command="{Binding Click_Warehouse}" Cursor="Hand" Visibility="Hidden" />
                 </StackPanel>
+            </Border>
+            <Border Name="Name_User" CornerRadius="10" MinWidth="30" MaxWidth="250" Margin="0 0 100 0"
+                    HorizontalAlignment="Right" VerticalAlignment="Center" Background="#efece7" Visibility="Hidden">
+                <TextBlock Name="Name_User_Text" Text="********" FontSize="20" Margin="6 4 6 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button x:Name="MinimizeButton" Background="Transparent" Style="{StaticResource MaterialDesignFlatLightButton}"
                             Foreground="LightGray" Height="24" Padding="0" Cursor="Hand" Click="MinimizeButton_Click">
-                    <Image Source="\Resources\minimize.png"/>
+                    <Image Source="\Resources\icon\minimize.png"/>
                 </Button>
                 <Button x:Name="ExpandButton" Background="Transparent" Style="{StaticResource MaterialDesignFlatLightButton}"
                             Foreground="LightGray" Height="24" Padding="0" Cursor="Hand" Click="ExpandButton_Click">
-                    <Image Source="\Resources\expand-window.png"/>
+                    <Image Source="\Resources\icon\expand-window.png"/>
                 </Button>
                 <Button x:Name="ExitButton" Background="Transparent" Style="{StaticResource MaterialDesignFlatLightButton}" 
                             Foreground="Red" Height="24" Padding="0" Cursor="Hand" Click="ExitButton_Click">
-                    <Image Source="\Resources\close-window.png"/>
+                    <Image Source="\Resources\icon\close-window.png"/>
                 </Button>
             </StackPanel>
         </Grid>
