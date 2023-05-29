@@ -42,6 +42,17 @@ namespace CarDealershipBeta.View.Pages
             {
                 DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 GridCar.ItemsSource = DataBaseEntities.GetContext().Car.ToList();
+
+                if(MainViewModel.typeUser == "admin")
+                {
+                    BtnSwitch.Visibility = Visibility.Visible;
+                    BtnDelete.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    BtnSwitch.Visibility = Visibility.Hidden;
+                    BtnDelete.Visibility = Visibility.Hidden;
+                }
             }
         }
 

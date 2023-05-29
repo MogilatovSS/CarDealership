@@ -85,10 +85,37 @@ namespace CarDealershipBeta.View.Pages
                 mainWindow.LogOutButton.Visibility = Visibility.Visible;
                 mainWindow.LogInButton.Visibility = Visibility.Hidden;
                 mainWindow.Name_User.Visibility = Visibility.Visible;
+                
+
 
                 if (userType == "admin")
                 {
                     mainWindow.WarehouseButton.Visibility = Visibility.Visible;
+                    MainViewModel.typeUser = userType;
+                    new Page_Warehouse().BtnSwitch.Visibility = Visibility.Visible;
+                    new Page_WarehouseAutopart().BtnSwitch.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                if (userType == "service")
+                {
+                    mainWindow.WarehouseButton.Visibility = Visibility.Visible;
+                    MainViewModel.typeUser = userType;
+                    return;
+                }
+
+                if (userType == "consultant")
+                {
+                    mainWindow.WarehouseButton.Visibility = Visibility.Visible;
+                    MainViewModel.typeUser = userType;
+                    return;
+                }
+
+                if (userType == "call")
+                {
+                    mainWindow.WarehouseButton.Visibility = Visibility.Visible;
+                    MainViewModel.typeUser = userType;
+                    return;
                 }
             }
             else

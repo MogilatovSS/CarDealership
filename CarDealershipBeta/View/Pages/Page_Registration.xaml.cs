@@ -1,7 +1,10 @@
 ﻿using CarDealershipBeta.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,6 +19,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MailMessage = System.Net.Mail.MailMessage;
+using System.Threading;
 
 namespace CarDealershipBeta.View.Pages
 {
@@ -25,6 +30,9 @@ namespace CarDealershipBeta.View.Pages
     public partial class Page_Registration : Page
     {
         private User _currentUser = new User();
+        Random random = new Random();
+        private int keyForEmail;
+
         public Page_Registration()
         {
             InitializeComponent();
@@ -37,7 +45,7 @@ namespace CarDealershipBeta.View.Pages
             MainViewModel.MainFrame.Navigate(new Page_LogIn());
         }
 
-        private void Reg_Button(object sender, RoutedEventArgs e)
+        private async void RegOne_Button(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
 
@@ -64,7 +72,7 @@ namespace CarDealershipBeta.View.Pages
                 TwoPassword.ToolTip = "Пароли должны совпадать.";
                 TwoPassword.Background = Brushes.Red;
             }
-            if (!Regex.IsMatch(Email.Text, @"[a-zA - Z0 - 9]+@[a-zA - Z0 - 9]+\.[a-zA - Z0 - 9]+"))
+            if (!Regex.IsMatch(Email.Text, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
             {
                 Email.ToolTip = "Некорректный E-mail";
                 Email.Background = Brushes.Red;
@@ -82,18 +90,80 @@ namespace CarDealershipBeta.View.Pages
                 }
             }
 
-            if(Password.Password.Length < 8)
+            if (Password.Password.Length < 8)
             {
                 Password.ToolTip = "Длина пароля должна превышать 8 символов.";
                 Password.Background = Brushes.Red;
             }
 
-            if (errors.Length > 0)
+            if (errors.Length > 0 || SendingEmail(true) == false)
             {
-                MessageBox.Show(errors.ToString());
                 return;
             }
+
+            RegistrationBorder.Visibility = Visibility.Hidden;
+            ValidationEmailBorder.Visibility = Visibility.Visible;
+
+        }
+
+        private bool SendingEmail(bool valid)
+        {
+            keyForEmail = random.Next(1000, 10000);
+
+            MailAddress from = new MailAddress("cardealership2022@mail.ru", "CarDealer");
+            MailAddress to = new MailAddress($"{Convert.ToString(Email.Text)}");
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = "Подтверждение почты";
+            m.Body = $"Ваша ключ для подтверждения почты: {Convert.ToString(keyForEmail)}<br/>Перейдите в приложение и введите" +
+                $" ключ в указанном поле. Если это не вы, проигнорируйте данное сообщение." +
+                $" <br/><br/>Удачного дня!<br/>С уважением ваш CarDealer.";
+            m.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
+            smtp.Credentials = new NetworkCredential("cardealership2022@mail.ru", "dFkbrdv2ap928ER7GF3k");
+            smtp.EnableSsl = true;
+
+            try
+            {
+                smtp.Send(m);
+                return (true);
+            }
+            catch
+            {
+                Email.ToolTip = "Введён несуществующий E-mail";
+                Email.Background = Brushes.Red;
+                return (false);
+            }
+        }
+
+        private void RegTwo_Button(object sender, RoutedEventArgs e)
+        {
+            RegistrationUser();
+        }
+
+        private void Back_Button(object sender, RoutedEventArgs e)
+        {
+            RegistrationBorder.Visibility = Visibility.Visible;
+            ValidationEmailBorder.Visibility = Visibility.Hidden;
+        }
+
+        private void RepitEmail_Button(object sender, RoutedEventArgs e)
+        {
+            if (SendingEmail(true))
+                return;
+        }
+
+        private void RegistrationUser()
+        {
+            txtError.Visibility = Visibility.Hidden;
+
+            if (int.Parse(keyEmail.Text) != keyForEmail)
+            {
+                txtError.Visibility = Visibility.Visible;
+                return;
+            }
+
             _currentUser.Password = GetHash(Password.Password);
+
             if (_currentUser.User_id == 0)
                 DataBaseEntities.GetContext().User.Add(_currentUser);
 
@@ -107,11 +177,27 @@ namespace CarDealershipBeta.View.Pages
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        public static string GetHash(string input) 
+
+        public static string GetHash(string input)
         {
             var md5 = MD5.Create();
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
             return Convert.ToBase64String(hash);
+        }
+
+        private void keyEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            foreach (char c in keyEmail.Text)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+
+            if (keyEmail.Text.Length == 4)
+                RegistrationUser();
         }
     }
 }

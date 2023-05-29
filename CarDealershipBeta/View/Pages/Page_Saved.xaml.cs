@@ -48,7 +48,10 @@ namespace CarDealershipBeta.View.Pages
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Reload();
+            if (Visibility == Visibility.Visible)
+            {
+                Reload();
+            }
         }
         private void Reload()
         {

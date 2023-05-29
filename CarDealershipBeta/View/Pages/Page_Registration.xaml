@@ -13,7 +13,7 @@
     <Grid Background="MediumSeaGreen">
         <Image  HorizontalAlignment="Left" Stretch="Fill" Source="\Resources\Backgrounds\backgroundLogInOut.png" Width="1337" Margin="-53,0,0,0" />
 
-        <Border MinWidth="400" MaxWidth="400" Height="350" Margin="15" Background="white" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+        <Border Name="RegistrationBorder" MinWidth="400" MaxWidth="400" Height="350" Margin="15" Background="white" VerticalAlignment="Center" Padding="40" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
             </Border.Effect>
@@ -25,10 +25,28 @@
                 <PasswordBox x:Name="TwoPassword" materialDesign:HintAssist.Hint="Повторно введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                 <TextBox x:Name="Email" Text="{Binding Email}" materialDesign:HintAssist.Hint="Адрес эл. почты"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Grid Margin="0 0 0 20">
-                    <Button Content="Зарегистрироваться" Margin="0 20" Width="175" Cursor="Hand" Click="Reg_Button"/>
+                    <Button Content="Зарегистрироваться" Margin="0 20" Width="175" Cursor="Hand" Click="RegOne_Button"/>
                     <Button HorizontalAlignment="Right" Content="Войти" Click="LogIn_Button" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"/>
                 </Grid>
             </StackPanel>
+        </Border>
+        <Border Name="ValidationEmailBorder" Visibility="Hidden" MinWidth="400" MaxWidth="400" Height="250" Margin="15" Background="white" VerticalAlignment="Center" Padding="40" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <Grid>
+                <TextBlock Name="txtError" Visibility="Hidden" VerticalAlignment="Center" Margin="0 0 0 65" Text="Введён неверный ключ" Foreground="Red" FontSize="18" HorizontalAlignment="Center"/>
+                <StackPanel>
+                    <TextBlock Text="Подтвердите почту" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                    <TextBox x:Name="keyEmail" MaxLength="4" Text="{Binding key}" TextChanged="keyEmail_TextChanged" materialDesign:HintAssist.Hint="Введите код, отправленный вам напочту"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <Grid Margin="0 20 0 0">
+                        <Button Content="Подтвердить" Width="125" Cursor="Hand" Click="RegTwo_Button"/>
+                        <Button HorizontalAlignment="Right" Content="Вернуться" Click="Back_Button" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"/>
+                    </Grid>
+                    <Button Content="повторить отправку" Margin="0 0 0 15" FontSize="9"  Background="Transparent" Width="125" Height="20" Cursor="Hand" Click="RepitEmail_Button" 
+                        Style="{StaticResource MaterialDesignFlatButton}"/>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Page>

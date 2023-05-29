@@ -150,6 +150,9 @@
     <Compile Include="UserPark.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Page_Applications.xaml.cs">
+      <DependentUpon>Page_Applications.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Page_Basket.xaml.cs">
       <DependentUpon>Page_Basket.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,9 @@
     </Compile>
     <Compile Include="View\Pages\Page_EgitAutopart.xaml.cs">
       <DependentUpon>Page_EgitAutopart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Page_InsertUser.xaml.cs">
+      <DependentUpon>Page_InsertUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Page_LogIn.xaml.cs">
       <DependentUpon>Page_LogIn.xaml</DependentUpon>
@@ -190,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\Page_Applications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Page_Basket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Page_EgitAutopart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Page_InsertUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,9 +28,6 @@ namespace CarDealershipBeta.View.Pages
         public Page_Profile()
         {
             InitializeComponent();
-            _user = DataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser);
-            if (_user != null)
-                GridProfile.Visibility = Visibility.Visible;
         }
 
         private void MouseDownImgCar(object sender, MouseButtonEventArgs e)
@@ -41,27 +38,39 @@ namespace CarDealershipBeta.View.Pages
             {
                 _user.Image = openFileDialog.FileName;
 
-                DataBaseEntities.GetContext().User.AddOrUpdate(_user);
-
                 try
                 {
                     DataBaseEntities.GetContext().SaveChanges();
+                    _user = DataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser); 
+                    DataContext = _user; 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
-            Reload();
         }
+
 
         private void Reload()
         {
+
             var user = DataBaseEntities.GetContext().User.FirstOrDefault(u => u.User_id == MainViewModel.currentUser);
             var autoparts = DataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == true).ToList();
 
+            BtnEmailSave.Visibility = Visibility.Hidden;
+            BtnLogInSave.Visibility = Visibility.Hidden;
+            InsertUser.Visibility = Visibility.Hidden;
+            ViewUserApplications.Visibility = Visibility.Hidden;
+
+            if (user == null)
+                return;
+
+            GridProfile.Visibility = Visibility.Visible;
+
             DataContext = user;
             ListViewCatalogCars.ItemsSource = autoparts;
+
             if (autoparts.Count > 0)
             {
                 txtHistoryOne.Visibility = Visibility.Visible;
@@ -69,16 +78,29 @@ namespace CarDealershipBeta.View.Pages
             }
             else
             {
-                txtHistoryOne.Visibility = Visibility.Visible;
-                txtHistoryTwo.Visibility = Visibility.Hidden;
+                txtHistoryOne.Visibility = Visibility.Hidden;
+                txtHistoryTwo.Visibility = Visibility.Visible;
+            }
+
+            if (MainViewModel.typeUser == "admin")
+            {
+                InsertUser.Visibility = Visibility.Visible;
+                ViewUserApplications.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (MainViewModel.typeUser == "call")
+            {
+                ViewUserApplications.Visibility = Visibility.Visible;
             }
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Reload();
-            BtnEmailSave.Visibility = Visibility.Hidden;
-            BtnLogInSave.Visibility = Visibility.Hidden;
+            if (Visibility == Visibility.Visible)
+            {
+                Reload();
+            }
         }
 
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
@@ -147,6 +169,16 @@ namespace CarDealershipBeta.View.Pages
             BtnEmailSave.Visibility = Visibility.Hidden;
 
             Reload();
+        }
+
+        private void InsertUser_Click(object sender, RoutedEventArgs e)
+        {
+            MainViewModel.MainFrame.Navigate(new Page_InsertUser());
+        }
+
+        private void ViewUserApplications_Click(object sender, RoutedEventArgs e)
+        {
+            MainViewModel.MainFrame.Navigate(new Page_Applications());
         }
     }
 }

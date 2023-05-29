@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
             <Button x:Name="BtnSwitch" Content="Автозапчасти" Width="130" Height="50" Margin="20 0 20 0" FontSize="15" 
-                    HorizontalAlignment="Right" Click="BtnSwitch_Click"/>
+                    HorizontalAlignment="Right" Click="BtnSwitch_Click" Cursor="Hand"/>
             <Button x:Name="BtnDelete"  Content="Удалить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
-                    HorizontalAlignment="Right" Click="BtnDelete_Click"/>
+                    HorizontalAlignment="Right" Click="BtnDelete_Click" Cursor="Hand"/>
             <Button x:Name="BtnInsert" Content="Добавить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
                     HorizontalAlignment="Right" Click="BtnInsert_Click"/>
             

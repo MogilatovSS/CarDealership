@@ -19,7 +19,7 @@
             <Button x:Name="BtnDelete"  Content="Удалить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
                     HorizontalAlignment="Right" Click="BtnDelete_Click"/>
             <Button x:Name="BtnInsert" Content="Добавить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
-                    HorizontalAlignment="Right" Click="BtnInsert_Click"/>
+                    HorizontalAlignment="Right" Click="BtnInsert_Click" Cursor="Hand"/>
 
         </StackPanel>
         <DataGrid x:Name="GridAutopart" AutoGenerateColumns="False" IsReadOnly="True" VerticalAlignment="Top" MinHeight="560">

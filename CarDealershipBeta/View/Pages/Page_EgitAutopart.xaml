@@ -50,9 +50,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="tb_Type" Text="{Binding Type_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Honda)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
-                    <TextBox x:Name="tb_Sale" Text="{Binding ForSale}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Год)/(Год-Год)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
-                    <TextBox x:Name="tb_Price" Text="{Binding Price}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Нет)/(турбина и др.)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Type" Text="{Binding Type_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Воздушный фильтр)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Sale" Text="{Binding ForSale}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(True)/(False)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Price" Text="{Binding Price}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(1835)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
@@ -62,9 +62,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="3">
-                    <TextBox x:Name="tb_Name" Text="{Binding Name_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(integra 1.8 Type R)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
-                    <TextBox x:Name="tb_Amount" Text="{Binding Amount}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Седан)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
-                    <TextBox x:Name="tb_idService" Text="{Binding Service_id}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(12.9л/100км)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Name" Text="{Binding Name_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(S 0004)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Amount" Text="{Binding Amount}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(12)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_idService" Text="{Binding Service_id}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(2)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
                 </StackPanel>
             </Grid>
         </Border>

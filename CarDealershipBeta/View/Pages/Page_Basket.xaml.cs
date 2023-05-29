@@ -33,7 +33,8 @@ namespace CarDealershipBeta.View.Pages
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
-            var autoparts = DataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == false || a.Sold == null).ToList();
+            var autoparts = DataBaseEntities.GetContext().BasketAutopart.
+                Where(a => a.User_id == MainViewModel.currentUser && a.Sold == false || a.Sold == null).ToList();
             var user = DataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser);
 
             foreach (var currentAutopart in autoparts)
@@ -77,7 +78,10 @@ namespace CarDealershipBeta.View.Pages
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Reload();
+            if (Visibility == Visibility.Visible)
+            {
+                Reload();
+            }
         }
         private void Reload()
         {

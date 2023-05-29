@@ -37,7 +37,8 @@ namespace CarDealershipBeta.View.Pages
             phoneService.Number = Number.Text;
             Good.Visibility = Visibility.Hidden;
 
-            if (Number.Text.Length > 12 || Number.Text.Length > 0 && !Regex.IsMatch(Number.Text, @"(\+7|8|\b)[\(\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[)\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)"))
+            if (Number.Text.Length > 12 || Number.Text.Length > 0 && !Regex.IsMatch(Number.Text,
+                @"(\+7|8|\b)[\(\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[)\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)[\s-]*(\d)"))
             {
                 Number.ToolTip = "Некорректно введён номер";
                 Number.Background = Brushes.Red;

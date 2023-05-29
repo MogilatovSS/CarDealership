@@ -22,8 +22,8 @@ namespace CarDealershipBeta
         }
         public static DataBaseEntities GetContext()
         {
-            if(_entities == null )
-                _entities = new DataBaseEntities();
+            if( _entities == null )
+                    _entities = new DataBaseEntities();
             return _entities;
         }
     

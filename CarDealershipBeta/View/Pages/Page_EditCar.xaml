@@ -89,7 +89,7 @@
                     <TextBox x:Name="tb_Denis" Text="{Binding Brakes}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Дисковые)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
                     <TextBox x:Name="tb_Luc" Text="{Binding Hatch}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Да)/(Нет)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
                     <TextBox x:Name="tb_Image" Text="{Binding Image}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(C:\Users\...\)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
-                    <Button x:Name="insertimage" Content="Выбрать фотографию" Click="BtnInsertImage_Click" Margin="0 10 0 0" Width="250"/>
+                    <Button x:Name="insertimage" Content="Выбрать фотографию" Click="BtnInsertImage_Click" Margin="0 10 0 0" Width="250" Cursor="Hand"/>
                 </StackPanel>
             </Grid>
         </Border>
