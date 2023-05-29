@@ -54,12 +54,12 @@
                 CornerRadius="0 0 8 0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10" Background="#663399"
                 Visibility="Hidden">
             <StackPanel>
-                <Button Name="ProfileButton" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
-                <Button Name="FavouriteButton" HorizontalAlignment="Left" Content="Избранное" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="FavouritesButton_Click" Cursor="Hand"/>
-                <Button Name="BasketButton" HorizontalAlignment="Left" Content="Корзина" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="BasketButton_Click"/>
+                <Button Name="ProfileButton" Command="{Binding Click_Profile}" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click"/>
+                <Button Name="FavouriteButton" Command="{Binding Click_Saved}" HorizontalAlignment="Left" Content="Избранное" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="FavouritesButton_Click" Cursor="Hand"/>
+                <Button Name="BasketButton" Command="{Binding Click_Basket}" HorizontalAlignment="Left" Content="Корзина" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="BasketButton_Click"/>
                 <Separator Height="1" Width="170" Background="AliceBlue"/>
                 <Grid>
-                    <Button Name="LogInButton" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click" Cursor="Hand"/>
+                    <Button Name="LogInButton" Command="{Binding Click_LogIn}" HorizontalAlignment="Left" Content="Войти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogInButton_Click" Cursor="Hand"/>
                     <Button Name="LogOutButton" Visibility="Hidden" HorizontalAlignment="Left" Content="Выйти" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="LogOutButton_Click" Cursor="Hand"/>
                 </Grid>
             </StackPanel>

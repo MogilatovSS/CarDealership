@@ -70,7 +70,6 @@ namespace CarDealershipBeta
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            MainViewModel.MainFrame.Navigate(new Page_Profile());
             MenuHumburger.Visibility = Visibility.Hidden;
         }
 
@@ -78,18 +77,15 @@ namespace CarDealershipBeta
         {
             
             MenuHumburger.Visibility = Visibility.Hidden;
-            MainViewModel.MainFrame.Navigate(new Page_LogIn()); // временно, надо будет сделать через класс
         }
 
         private void FavouritesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainViewModel.MainFrame.Navigate(new Page_Saved());
             MenuHumburger.Visibility = Visibility.Hidden;
         }
 
         private void BasketButton_Click(object sender, RoutedEventArgs e)
         {
-            MainViewModel.MainFrame.Navigate(new Page_Basket());
             MenuHumburger.Visibility = Visibility.Hidden;
         }
 
@@ -100,11 +96,6 @@ namespace CarDealershipBeta
             LogOutButton.Visibility = Visibility.Hidden;
             LogInButton.Visibility = Visibility.Visible;
             Name_User.Visibility = Visibility.Hidden;
-        }
-
-        private void BtnWarehouse_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }
