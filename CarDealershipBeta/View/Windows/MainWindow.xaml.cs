@@ -38,7 +38,7 @@ namespace CarDealershipBeta
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            System.Environment.Exit(0);
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -95,7 +95,9 @@ namespace CarDealershipBeta
             WarehouseButton.Visibility = Visibility.Hidden;
             LogOutButton.Visibility = Visibility.Hidden;
             LogInButton.Visibility = Visibility.Visible;
-            Name_User.Visibility = Visibility.Hidden;
+            Name_User.Visibility = Visibility.Hidden; 
+            MainFrame.Navigate(null);
+            MenuHumburger.Visibility = Visibility.Hidden;
         }
     }
 }
