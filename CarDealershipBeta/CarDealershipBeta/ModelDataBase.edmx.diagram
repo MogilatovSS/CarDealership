@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="807c914bf57b42d0bb7452f7f513f94e" Name="Diagram1">
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.BasketAutopart" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.Car" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.CategoryService" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.CategoryService_Warehouse" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.Liked" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.PhoneService" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.RegistrationService" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.Service" Width="1.5" PointX="1.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.User" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.UserPark" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDealershipAndServiceDataBaseModel.WarehouseAutopart" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_BasketAutopart_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_BasketAutopart_WarehouseAutopart" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_Basket_Car1" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_CategoryService_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_UserPark_Car" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_CategoryService_Warehouse_CategoryService" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_RegistrationService_CategoryService" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_CategoryService_Warehouse_Warehouse" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_Basket_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_Service_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_RegistrationService_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_WarehouseAutopart_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDealershipAndServiceDataBaseModel.FK_UserPark_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

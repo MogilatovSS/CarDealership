@@ -58,8 +58,6 @@
         <Button x:Name="BackPage" Content="&lt;-back" Background="Transparent" BorderThickness="0" Foreground="White"
                 VerticalAlignment="Bottom" Grid.Row="1" Width="80" Click="BtnBackPage_Click" Margin="30 0 0 30"
                 HorizontalAlignment="Left" Cursor="Hand"/>
-        <Button x:Name="ButtonSave" Content="Сохранить" Width="180" Height="50" Grid.Row="2" VerticalAlignment="Center"
-                HorizontalAlignment="Right" Margin="0,300,70,0" Click="BtnSave_Click" Cursor="Hand"/>
         <TextBlock x:Name="Good" Text="Товар добавлен" FontSize="13" Foreground="LightGreen" 
                    Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,360,110,0" Visibility="Hidden"/>
         <TextBlock x:Name="Bad" Text="Войдите в аккаунт" FontSize="13" Foreground="Red" 

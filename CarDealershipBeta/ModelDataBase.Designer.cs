@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\kinde\Desktop\CarDealershipAndService\CarDealershipBeta\CarDealershipBeta\ModelDataBase.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\kinde\Desktop\КП-4-курс Ерошевич Проектирование и дизайин ИС\CarDealershipBeta2.0 КП-4-kurs\CarDealershipBeta\ModelDataBase.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

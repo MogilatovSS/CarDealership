@@ -1,0 +1,111 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_Cataloge"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_Cataloge" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Page.Resources>
+        <ResourceDictionary Source="/View/Liblary/Dictionary.xaml" />
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Button x:Name="SwitchCatalog" Content="Автозапчасти" HorizontalAlignment="Left" BorderThickness="0"
+                        VerticalAlignment="Top" Margin=" 150 15 0 0" Background="LightGray" Foreground="Black"
+                        Click="SwitchCatalog_Click" Width="125"/>
+                <StackPanel>
+                    <Border MinWidth="400" MaxWidth="640" Margin="0 15 0 0" Background="#1b1d1e" Opacity="1" 
+                VerticalAlignment="Top" Padding="6" CornerRadius="10">
+                        <TextBox x:Name="NameFilter" Margin="10 0 0 0" materialDesign:HintAssist.Hint="Поиск..."
+                     Width="610" Height="28" FontSize="17" VerticalAlignment="Center"
+                     Foreground="#64665b" TextChanged="NameFilter_TextChanged"
+                     HorizontalAlignment="Left"/>
+                    </Border>
+                    <Border MinWidth="400" MaxWidth="640" Margin="0 15 0 15" Background="#1b1d1e"
+                    Opacity="1" Padding="6" CornerRadius="10">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 8" Width="640" HorizontalAlignment="Center">
+                            <StackPanel Margin="5 0 0 0">
+                                <ComboBox Name="Marka" materialDesign:HintAssist.Hint="Марка" 
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                    <ComboBox.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                                <ComboBox Name="Carcase" materialDesign:HintAssist.Hint="Кузов"
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                    <ComboBox.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <ComboBox Name="Year" Width="200" materialDesign:HintAssist.Hint="Год"
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                    <ComboBox.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                                <ComboBox Name="Hatch" materialDesign:HintAssist.Hint="Люк"
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                    <ComboBox.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <ComboBox Name="Drive_unit" materialDesign:HintAssist.Hint="Привод"
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                    <ComboBox.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                    </ComboBox.Resources>
+                                </ComboBox>
+                                <Button Click="BtnClear_Click"  BorderThickness="1" BorderBrush="Black"
+                                Content="Очистить" Foreground="Black" Background="LightGray" 
+                                Cursor="Hand" Width="200" Height="50" Margin="5 10 0 0" Style="{DynamicResource MaterialDesignFlatAccentBgButton}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ItemsControl x:Name="ListViewCatalogCars" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <StackPanel>
+                                        <Image Cursor="Hand" Stretch="Fill" Width="390" Height="300" 
+                                           Mouse.MouseDown="MouseDownImgCar" Margin="25 25 0 0">
+                                            <Image.Clip>
+                                                <RectangleGeometry RadiusX="20" RadiusY="20" Rect="0 0 390 300"/>
+                                            </Image.Clip>
+                                            <Image.Source>
+                                                <Binding Path="Image">
+                                                    <Binding.TargetNullValue>
+                                                        <ImageSource>\Resources\icon\missingImage.png</ImageSource>
+                                                    </Binding.TargetNullValue>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White"
+                                               FontSize="20" Margin="0 5 0 0">
+                                        <Run Text="{Binding Name}"/>
+                                        <Run Text="{Binding Model}"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -13,36 +13,36 @@ namespace CarDealershipBeta
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DataBaseEntities : DbContext
+    public partial class YourRoadDataBaseEntities : DbContext
     {
-        private static DataBaseEntities _entities;
-        public DataBaseEntities()
-            : base("name=DataBaseEntities")
+        public static YourRoadDataBaseEntities entities;
+        public YourRoadDataBaseEntities()
+            : base("name=YourRoadDataBaseEntities")
         {
         }
-        public static DataBaseEntities GetContext()
+        public static YourRoadDataBaseEntities GetContext()
         {
-            if( _entities == null )
-                    _entities = new DataBaseEntities();
-            return _entities;
+            if (entities == null)
+            {
+                entities = new YourRoadDataBaseEntities();
+            }
+
+            return entities;
         }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ApplicationOrderService> ApplicationOrderService { get; set; }
         public virtual DbSet<BasketAutopart> BasketAutopart { get; set; }
         public virtual DbSet<Car> Car { get; set; }
         public virtual DbSet<CategoryService> CategoryService { get; set; }
-        public virtual DbSet<CategoryService_Warehouse> CategoryService_Warehouse { get; set; }
-        public virtual DbSet<Liked> Liked { get; set; }
+        public virtual DbSet<OrderService> OrderService { get; set; }
         public virtual DbSet<PhoneService> PhoneService { get; set; }
-        public virtual DbSet<RegistrationService> RegistrationService { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<UserPark> UserPark { get; set; }
         public virtual DbSet<WarehouseAutopart> WarehouseAutopart { get; set; }
     }
 }

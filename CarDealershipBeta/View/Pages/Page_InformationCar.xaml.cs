@@ -21,41 +21,17 @@ namespace CarDealershipBeta.View.Pages
     /// </summary>
     public partial class Page_InformationCar : Page
     {
-        private Liked liked = new Liked();
         public Page_InformationCar(Car selectedCar)
         {
             InitializeComponent();
 
             DataContext = selectedCar;
-            liked.Car_id = selectedCar.Car_id;
-            liked.User_id = MainViewModel.currentUser;
         }
 
         private void BtnBackPage_Click(object sender, RoutedEventArgs e)
         {
             MainViewModel.MainFrame.GoBack();
         }
-
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
-        {
-            if(MainViewModel.currentUser == 0)
-            {
-                Bad.Visibility = Visibility.Visible;
-                return;
-            }
-
-            Good.Visibility = Visibility.Visible;
-            if (liked.Liked_id == 0)
-                DataBaseEntities.GetContext().Liked.Add(liked);
-
-            try
-            {
-                DataBaseEntities.GetContext().SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
+       
     }
 }

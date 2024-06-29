@@ -1,0 +1,147 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_Service"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_Service">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <Grid>
+                    <Grid Width="1280" Height="660">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="900"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="1" Width="300" Background="#efece7" VerticalAlignment="Top" Margin="10,60" HorizontalAlignment="Left" Padding="40" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
+                            </Border.Effect>
+                            <StackPanel x:Name="Panel">
+                                <TextBlock Text="Записаться" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                <TextBlock Text="по телефону" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" FontSize="14">
+                    Заполните форму и менеджер
+                    ответит Вам в ближайшее время
+                                </TextBlock>
+
+                                <TextBox x:Name="Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Имя"/>
+                                <TextBox x:Name="Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Телефон" Text="+7"/>
+                                <Button Content="Записаться" Margin="0 20 0 0" Width="175" Cursor="Hand" Click="Reg_Button"/>
+                                <TextBlock x:Name="Good" Text = "Отправлено" Foreground = "LightGreen" FontSize = "13" HorizontalAlignment = "Center" Margin = "0 10" Visibility="Hidden"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="0" Width="700" Background="#efece7" VerticalAlignment="Top" Margin="0 60 0 20" HorizontalAlignment="Center" Padding="40" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
+                            </Border.Effect>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Margin="0,0,0,10">
+                    Сервисное обслуживание CarDealer
+                                </TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" FontSize="16">
+                    Большинство организаций, занимающихся техническим обслуживанием автомобилей подтвердят, 
+                    что большей части поломок, с которыми сталкиваются владельцы автомобилей, можно избежать,
+                    придерживаясь рекомендаций производителя по регулярному обслуживанию и ремонту автомобиля. 
+                    Надлежащий уход за автомобилем позволит улучшить его ходовые характеристики, снизить расход 
+                    топлива и повысить безопасность
+                                </TextBlock>
+                                <Grid Width="600" Height="300" Margin="0,20,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="150"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                                        <Image VerticalAlignment="Top" Width="72" Height="72" Stretch="Fill" Source="/Resources/icon/phone.png" HorizontalAlignment="Left"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" Width="200">
+                            Онлайн-запись на сервис 24 часа
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+                                        <Image VerticalAlignment="Top" Width="72" Height="72" Stretch="Fill" Source="/Resources/icon/phoneMan.png" HorizontalAlignment="Left"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" Width="200">
+                            Персональный консультант
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                                        <Image VerticalAlignment="Top" Width="72" Height="72" Stretch="Fill" Source="/Resources/icon/clock.png" HorizontalAlignment="Left"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" Width="200">
+                            Обслуживание без ожидания и очередей
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                                        <Image VerticalAlignment="Top" Width="72" Height="72" Stretch="Fill" Source="/Resources/icon/dinDin.png" HorizontalAlignment="Left"/>
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" Width="200">
+                            Нормо-час от 1 800 руб для постгарантийных авто
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <TextBlock Text="Регламент технического обслуживания" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="Marka" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="100 10 10 0" Width="200" materialDesign:HintAssist.Hint="Марка" SelectionChanged="Marka_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                    <ComboBox Name="Model" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Модель" SelectionChanged="Model_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                    <ComboBox Name="Engine" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Двигатель" SelectionChanged="Engine_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                    <ComboBox Name="Transmission" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Трансмиссия" SelectionChanged="Transmission_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 50">
+                    <ComboBox Name="Privod" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="100 10 10 0" Width="200" materialDesign:HintAssist.Hint="Привод" SelectionChanged="Privod_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                    <ComboBox Name="TypeTO" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Тип ТО" SelectionChanged="TypeTO_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                        </ComboBox.Resources>
+                    </ComboBox>
+                    <Button Content="Записаться" Margin="40 10 10 0" Width="200" Height="45"/>
+                </StackPanel>
+
+                <StackPanel x:Name="Uslugi" Orientation="Horizontal" Visibility="Visible" >
+                    <StackPanel x:Name="maintenanceType">
+                        <TextBlock Text="Тип ТО" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel x:Name="itemPrice">
+                        <TextBlock Text="Стоимость запчастей" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel x:Name="priveOfService">
+                        <TextBlock Text="Стоимость услуги" Foreground="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

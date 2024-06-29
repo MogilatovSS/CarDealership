@@ -94,53 +94,59 @@
                     </Grid>
                 </Grid>
                 <TextBlock Text="Регламент технического обслуживания" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox Name="Marka" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="100 10 10 0" Width="200" materialDesign:HintAssist.Hint="Марка" SelectionChanged="Marka_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 30">
+                    <ComboBox Name="Marka" Background="#161718" Foreground="White" Margin="0 10 10 0" Width="200" materialDesign:HintAssist.Hint="Марка" SelectionChanged="Marka_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
                         <ComboBox.Resources>
                             <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
                         </ComboBox.Resources>
                     </ComboBox>
-                    <ComboBox Name="Model" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Модель" SelectionChanged="Model_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    <ComboBox Name="Model" Background="#161718" Foreground="White" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Модель" SelectionChanged="Model_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
                         <ComboBox.Resources>
                             <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
                         </ComboBox.Resources>
                     </ComboBox>
-                    <ComboBox Name="Engine" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Двигатель" SelectionChanged="Engine_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                        <ComboBox.Resources>
-                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                    <ComboBox Name="Transmission" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Трансмиссия" SelectionChanged="Transmission_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    <ComboBox Name="Engine" Background="#161718" Foreground="White" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Двигатель" SelectionChanged="Engine_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
                         <ComboBox.Resources>
                             <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
                         </ComboBox.Resources>
                     </ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 10 0 50">
-                    <ComboBox Name="Privod" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="100 10 10 0" Width="200" materialDesign:HintAssist.Hint="Привод" SelectionChanged="Privod_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                        <ComboBox.Resources>
-                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                    <ComboBox Name="TypeTO" Background="#161718" HorizontalAlignment="Left" Foreground="#6d6f70" Margin="40 10 10 0" Width="200" materialDesign:HintAssist.Hint="Тип ТО" SelectionChanged="TypeTO_SelectionChangeCommitted" Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                        <ComboBox.Resources>
-                            <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                    <Button Content="Записаться" Margin="40 10 10 0" Width="200" Height="45"/>
-                </StackPanel>
-
-                <StackPanel x:Name="Uslugi" Orientation="Horizontal" Visibility="Visible" >
-                    <StackPanel x:Name="maintenanceType">
-                        <TextBlock Text="Тип ТО" Foreground="White"/>
-                    </StackPanel>
-                    <StackPanel x:Name="itemPrice">
-                        <TextBlock Text="Стоимость запчастей" Foreground="White"/>
-                    </StackPanel>
-                    <StackPanel x:Name="priveOfService">
-                        <TextBlock Text="Стоимость услуги" Foreground="White"/>
-                    </StackPanel>
-                </StackPanel>
+                <DataGrid x:Name="GridService" AutoGenerateColumns="False" IsReadOnly="True" VerticalAlignment="Top" MinHeight="150">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер ТО" Binding="{Binding Number_service}"/>
+                        <DataGridTextColumn Header="Километраж" Binding="{Binding Mileage}"/>
+                        <DataGridTemplateColumn Header="Список услуг">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Service}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Type_service}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Список деталей">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding WarehouseAutopart}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <Run Text="{Binding Type_item}"/>
+                                                    <Run Text=" - "/>
+                                                    <Run Text="{Binding Name_item}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </ScrollViewer>
     </Grid>

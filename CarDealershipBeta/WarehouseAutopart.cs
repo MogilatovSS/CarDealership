@@ -18,21 +18,21 @@ namespace CarDealershipBeta
         public WarehouseAutopart()
         {
             this.BasketAutopart = new HashSet<BasketAutopart>();
-            this.CategoryService_Warehouse = new HashSet<CategoryService_Warehouse>();
+            this.OrderService = new HashSet<OrderService>();
+            this.CategoryService = new HashSet<CategoryService>();
         }
     
         public int Item_id { get; set; }
         public string Type_item { get; set; }
         public string Name_item { get; set; }
         public Nullable<int> Amount { get; set; }
-        public Nullable<bool> ForSale { get; set; }
         public int Price { get; set; }
-        public Nullable<int> Service_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BasketAutopart> BasketAutopart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CategoryService_Warehouse> CategoryService_Warehouse { get; set; }
-        public virtual Service Service { get; set; }
+        public virtual ICollection<OrderService> OrderService { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CategoryService> CategoryService { get; set; }
     }
 }

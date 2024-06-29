@@ -30,8 +30,8 @@ namespace CarDealershipBeta.View.Pages
         {
             if (Visibility == Visibility.Visible)
             {
-                DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                GridAutopart.ItemsSource = DataBaseEntities.GetContext().PhoneService.ToList();
+                YourRoadDataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                GridAutopart.ItemsSource = YourRoadDataBaseEntities.GetContext().PhoneService.ToList();
             }
         }
 
@@ -44,11 +44,11 @@ namespace CarDealershipBeta.View.Pages
             {
                 try
                 {
-                    DataBaseEntities.GetContext().PhoneService.RemoveRange(Applications);
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().PhoneService.RemoveRange(Applications);
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                     MessageBox.Show("Данные удалены");
 
-                    GridAutopart.ItemsSource = DataBaseEntities.GetContext().PhoneService.ToList();
+                    GridAutopart.ItemsSource = YourRoadDataBaseEntities.GetContext().PhoneService.ToList();
                 }
                 catch (Exception ex)
                 {

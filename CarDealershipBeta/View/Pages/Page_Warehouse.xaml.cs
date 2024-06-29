@@ -35,13 +35,13 @@ namespace CarDealershipBeta.View.Pages
         {
             MainViewModel.MainFrame.Navigate(new Page_EditCar(null));
         }
-
+        
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
             {
-                DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                GridCar.ItemsSource = DataBaseEntities.GetContext().Car.ToList();
+                YourRoadDataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                GridCar.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.ToList();
 
                 if(MainViewModel.typeUser == "admin")
                 {
@@ -65,11 +65,12 @@ namespace CarDealershipBeta.View.Pages
             {
                 try
                 {
-                    DataBaseEntities.GetContext().Car.RemoveRange(CarsForRemoving);
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().Car.RemoveRange(CarsForRemoving);
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
+
                     MessageBox.Show("Данные удалены");
 
-                    GridCar.ItemsSource = DataBaseEntities.GetContext().Car.ToList();
+                    GridCar.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.ToList();
                 }
                 catch (Exception ex)
                 {

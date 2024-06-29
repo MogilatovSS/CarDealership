@@ -1,0 +1,53 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_Warehouse"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_Warehouse" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <Button x:Name="BtnSwitch" Content="Автозапчасти" Width="130" Height="50" Margin="20 0 20 0" FontSize="15" 
+                    HorizontalAlignment="Right" Click="BtnSwitch_Click" Cursor="Hand"/>
+            <Button x:Name="BtnDelete"  Content="Удалить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
+                    HorizontalAlignment="Right" Click="BtnDelete_Click" Cursor="Hand"/>
+            <Button x:Name="BtnInsert" Content="Добавить" Width="100" Height="50" Margin="20 0 20 0" FontSize="15" 
+                    HorizontalAlignment="Right" Click="BtnInsert_Click"/>
+            
+        </StackPanel>
+        <DataGrid x:Name="GridCar" AutoGenerateColumns="False" IsReadOnly="True" VerticalAlignment="Top" MinHeight="560">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="ред." Name="BtnEdit" Click="BtnEdit_Click"
+                                    Background="Red" BorderThickness="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                <DataGridTextColumn Header="Год" Binding="{Binding Year}"/>
+                <DataGridTextColumn Header="Марка" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Нагнетатель" Binding="{Binding Supercharger}"/>
+                <DataGridTextColumn Header="Тип двигателя" Binding="{Binding Type_Engine}"/>
+                <DataGridTextColumn Header="Модель двигателя" Binding="{Binding Model_Engine}"/>
+                <DataGridTextColumn Header="Мощность" Binding="{Binding Volume}"/>
+                <DataGridTextColumn Header="Объём" Binding="{Binding Power}"/>
+                <DataGridTextColumn Header="Трансмиссия" Binding="{Binding Transmission}"/>
+                <DataGridTextColumn Header="Привод" Binding="{Binding Drive_unit}"/>
+                <DataGridTextColumn Header="Кузов" Binding="{Binding Carcase}"/>
+                <DataGridTextColumn Header="Расход" Binding="{Binding Fuel_consumption}"/>
+                <DataGridTextColumn Header="Люк" Binding="{Binding Hatch}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Количесвто" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

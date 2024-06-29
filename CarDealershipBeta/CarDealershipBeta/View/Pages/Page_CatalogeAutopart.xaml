@@ -1,0 +1,75 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_CatalogeAutopart"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_CatalogeAutopart">
+
+    <Page.Resources>
+        <ResourceDictionary Source="/View/Liblary/Dictionary.xaml" />
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Button x:Name="SwitchCatalog" Content="Машины" HorizontalAlignment="Left" BorderThickness="0"
+                        VerticalAlignment="Top" Margin=" 150 15 0 0" Background="LightGray" Foreground="Black"
+                        Click="SwitchCatalog_Click" Width="125"/>
+                <StackPanel>
+                    <Border MinWidth="400" MaxWidth="640" Margin="0 15 0 0" Background="#1b1d1e" Opacity="1" 
+                VerticalAlignment="Top" Padding="6" CornerRadius="10">
+                        <TextBox x:Name="NameFilter" Margin="10 0 0 0" materialDesign:HintAssist.Hint="Поиск..."
+                     Width="610" Height="28" FontSize="17" VerticalAlignment="Center"
+                     Foreground="#64665b" TextChanged="NameFilter_TextChanged"
+                     HorizontalAlignment="Left"/>
+                    </Border>
+                    <Border MinWidth="400" MaxWidth="640" Margin="0 15 0 15" Background="#1b1d1e"
+                    Opacity="1" Padding="6" CornerRadius="10">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 8" Width="640" HorizontalAlignment="Center">
+                            <ComboBox Name="Type" Margin="10 5 0 0" materialDesign:HintAssist.Hint="Тип" Foreground="White"
+                                  Style="{StaticResource FiltrComboBox}" SelectionChanged="ComboBoxFiltr_SelectedChanged">
+                                <ComboBox.Resources>
+                                    <SolidColorBrush x:Key="MaterialDesignPaper" Color="Black"/>
+                                </ComboBox.Resources>
+                            </ComboBox>
+                            <Button Click="BtnClear_Click"  BorderThickness="1" BorderBrush="Black"
+                                Content="Очистить" Foreground="Black" Background="LightGray"
+                                Cursor="Hand" Width="200" Height="50" Margin="220 5 0 0" Style="{DynamicResource MaterialDesignFlatAccentBgButton}"/>
+                        </StackPanel>
+                    </Border>
+                    <ItemsControl x:Name="ListViewCatalogCars" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Border CornerRadius="5" Background="LightGray" Width="1000" Margin="30 10 0 0">
+                                        <Grid VerticalAlignment="Center">
+                                            <TextBlock Margin="10 0 0 0" HorizontalAlignment="Left" Foreground="Black"
+                                               FontSize="20" VerticalAlignment="Center">
+                                                <Run Text="{Binding Type_item}"/>
+                                                <Run Text="{Binding Name_item}"/>
+                                            </TextBlock>
+                                            <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Right"
+                                                        VerticalAlignment="Center">
+                                                <TextBlock VerticalAlignment="Center">
+                                                    <Run Text="{Binding Price}"/>
+                                                    <Run Text="$ за 1/шт"/>
+                                                </TextBlock>
+                                                <TextBox x:Name="TxtAmountItem" Text="{Binding AmountItem}" Width="100" VerticalAlignment="Center" Margin="15 0 15 0" materialDesign:HintAssist.Hint="кол-во в шт." />
+                                                <Button Width="100" Content="В коризну" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"
+                                                        Foreground="Black" Click="BtnBuy_Click"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

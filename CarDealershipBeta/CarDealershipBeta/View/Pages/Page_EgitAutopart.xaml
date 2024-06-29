@@ -1,0 +1,72 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_EgitAutopart"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_EgitAutopart">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Header" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="10,17,5,0" />
+                <Setter Property="Foreground" Value="#2c2e2d" />
+                <Setter Property="FontWeight" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Name="grid" Background="#efece7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="BackPage" Content="&lt;-back" Background="Transparent" BorderThickness="0" Foreground="Black"
+                VerticalAlignment="Bottom" Grid.Row="1" Width="80" Click="BtnBackPage_Click" Margin="30 0 0 30"
+                HorizontalAlignment="Left" Cursor="Hand"/>
+        <TextBlock x:Name="Text_Block_Name" Text="Форма редактирования" FontSize="30" FontWeight="Black" Margin="140 0 0 0" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="0"/>
+        <Button x:Name="BtnSave" Content="Сохранить изменения" Width="200" Height="50" Grid.Row="1" Grid.Column="1" Foreground="LightGreen" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 50 50" Click="BtnSave_Click"/>
+
+        <Border CornerRadius="15" Background="#efece7" Width="1020" Height="460" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="310"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Тип: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Для продажи ?: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Цена: " Style="{StaticResource Header}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBox x:Name="tb_Type" Text="{Binding Type_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Воздушный фильтр)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Sale" Text="{Binding ForSale}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(True)/(False)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Price" Text="{Binding Price}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(1835)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Наименование: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Количество: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Код сервиса: " Style="{StaticResource Header}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <TextBox x:Name="tb_Name" Text="{Binding Name_item}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(S 0004)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Amount" Text="{Binding Amount}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(12)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_idService" Text="{Binding Service_id}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(2)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

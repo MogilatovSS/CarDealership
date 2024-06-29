@@ -18,10 +18,8 @@ namespace CarDealershipBeta
         public User()
         {
             this.BasketAutopart = new HashSet<BasketAutopart>();
-            this.Liked = new HashSet<Liked>();
+            this.OrderService = new HashSet<OrderService>();
             this.PhoneService = new HashSet<PhoneService>();
-            this.RegistrationService = new HashSet<RegistrationService>();
-            this.UserPark = new HashSet<UserPark>();
         }
     
         public string Login { get; set; }
@@ -30,16 +28,13 @@ namespace CarDealershipBeta
         public int User_id { get; set; }
         public string UserType { get; set; }
         public string Image { get; set; }
+        public Nullable<System.DateTime> TimeLastEntry { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BasketAutopart> BasketAutopart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Liked> Liked { get; set; }
+        public virtual ICollection<OrderService> OrderService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhoneService> PhoneService { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegistrationService> RegistrationService { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserPark> UserPark { get; set; }
     }
 }

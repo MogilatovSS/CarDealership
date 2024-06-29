@@ -54,11 +54,11 @@ namespace CarDealershipBeta.View.Pages
             }
 
             if (_warehouseAutopart.Item_id == 0)
-                DataBaseEntities.GetContext().WarehouseAutopart.AddOrUpdate(_warehouseAutopart);
+                YourRoadDataBaseEntities.GetContext().WarehouseAutopart.AddOrUpdate(_warehouseAutopart);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
             }
             catch (Exception ex)

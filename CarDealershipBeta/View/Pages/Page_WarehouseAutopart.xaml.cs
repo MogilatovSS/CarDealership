@@ -40,11 +40,11 @@ namespace CarDealershipBeta.View.Pages
             {
                 try
                 {
-                    DataBaseEntities.GetContext().WarehouseAutopart.RemoveRange(CarsForRemoving);
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().WarehouseAutopart.RemoveRange(CarsForRemoving);
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                     MessageBox.Show("Данные удалены");
 
-                    GridAutopart.ItemsSource = DataBaseEntities.GetContext().WarehouseAutopart.ToList();
+                    GridAutopart.ItemsSource = YourRoadDataBaseEntities.GetContext().WarehouseAutopart.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -67,8 +67,8 @@ namespace CarDealershipBeta.View.Pages
         {
             if (Visibility == Visibility.Visible)
             {
-                DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                GridAutopart.ItemsSource = DataBaseEntities.GetContext().WarehouseAutopart.ToList();
+                YourRoadDataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                GridAutopart.ItemsSource = YourRoadDataBaseEntities.GetContext().WarehouseAutopart.ToList();
 
                 if (MainViewModel.typeUser == "admin")
                 {

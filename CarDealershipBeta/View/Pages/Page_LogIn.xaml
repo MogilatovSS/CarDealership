@@ -16,12 +16,14 @@
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel x:Name="Panel">
+            <StackPanel x:Name="Panel" Cursor="">
                 <TextBlock Text="Войти" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
                 <TextBox x:Name="Login" Text="{Binding Login}" materialDesign:HintAssist.Hint="Введите логин"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox x:Name="Password" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <Button  Content="Войти" Margin="0 20 0 0" Width="175" Cursor="Hand" Click="LogIn_Button"/>
-                <Button  HorizontalAlignment="Center" Content="Зарегистрироваться" FontSize="10" Click="Registration_Button" Style="{StaticResource MaterialDesignFlatButton}"/>
+                <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox x:Name="PasswordTextBox" materialDesign:HintAssist.Hint="Введите пароль"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Visibility="Collapsed"/>
+                <CheckBox x:Name="CheckBoxShowPassword" Content="Показать пароль" FontSize="11" Click="ShowPassword_Click" HorizontalAlignment="Left" Padding="0" Margin="0 5 0 0"/>
+                <Button x:Name="LoginButton" Content="Войти" Margin="0 20 0 0" Width="175" Cursor="Hand" Click="LogIn_Button"/>
+                <Button HorizontalAlignment="Center" Content="Зарегистрироваться" FontSize="10" Click="Registration_Button" Style="{StaticResource MaterialDesignFlatButton}"/>
                 <TextBlock Name="Nope" Text="Пользователь не найден." HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" Visibility="Hidden"/>
             </StackPanel>
         </Border>

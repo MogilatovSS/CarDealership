@@ -1,0 +1,97 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_EditCar"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_EditCar">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Header" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="10,17,5,0" />
+                <Setter Property="Foreground" Value="#2c2e2d" />
+                <Setter Property="FontWeight" Value="Black" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Name="grid" Background="#efece7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="BackPage" Content="&lt;-back" Background="Transparent" BorderThickness="0" Foreground="Black"
+                VerticalAlignment="Bottom" Grid.Row="1" Width="80" Click="BtnBackPage_Click" Margin="30 0 0 30"
+                HorizontalAlignment="Left" Cursor="Hand"/>
+        <TextBlock x:Name="Text_Block_Name" Text="Форма редактирования" FontSize="30" FontWeight="Black" Margin="140 0 0 0" Foreground="Black" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="0"/>
+        <Button x:Name="BtnSave" Content="Сохранить изменения" Width="200" Height="50" Grid.Row="1" Grid.Column="1" Foreground="LightGreen" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 50 50" Click="BtnSave_Click"/>
+
+        <Border CornerRadius="15" Background="#efece7" Width="1020" Height="460" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="310"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Марка: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Период выпуска: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Нагнетатель: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Тип двигателя: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Марка двигателя: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Объём: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Мощность: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Трансмиссия: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Привод: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Цена: " Style="{StaticResource Header}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBox x:Name="tb_Name" Text="{Binding Name}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Honda)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Date" Text="{Binding Year}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Год)/(Год-Год)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Nagn" Text="{Binding Supercharger}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Нет)/(турбина и др.)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Dvg" Text="{Binding Type_Engine}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Роторный и др.)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Marka" Text="{Binding Model_Engine}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(B18C)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_V" Text="{Binding Volume}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(2.5 л.)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Mosh" Text="{Binding Power}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(212 л.с.)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Trans" Text="{Binding Transmission}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(МКПП)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Priv" Text="{Binding Drive_unit}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Полный)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Price" Text="{Binding Price}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(1000)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Модель: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Кузов: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Расход топлива: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Подвеска: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Гидроусил. руля: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Тормоза: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="Люк: " Style="{StaticResource Header}"/>
+                    <TextBlock Text="ABS: " Style="{StaticResource Header}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <TextBox x:Name="tb_Model" Text="{Binding Model}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(integra 1.8 Type R)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Kuzov" Text="{Binding Carcase}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Седан)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Topl" Text="{Binding Fuel_consumption}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(12.9л/100км)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Podves" Text="{Binding Suspension}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Независимая)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Round" Text="{Binding Hydraulic_booster}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Да)/(Нет)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Denis" Text="{Binding Brakes}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Дисковые)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Luc" Text="{Binding Hatch}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(Да)/(Нет)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <TextBox x:Name="tb_Image" Text="{Binding Image}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="(C:\Users\...\)" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="300"/>
+                    <Button x:Name="insertimage" Content="Выбрать фотографию" Click="BtnInsertImage_Click" Margin="0 10 0 0" Width="250" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

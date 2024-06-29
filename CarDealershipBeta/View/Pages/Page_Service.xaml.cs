@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,6 +28,10 @@ namespace CarDealershipBeta.View.Pages
         public Page_Service()
         {
             InitializeComponent();
+            Marka.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.Select(c => c.Name).Distinct().ToList();
+            Model.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.Select(c => c.Model).Distinct().ToList();
+            Engine.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.Select(c => c.Model_Engine).Distinct().ToList();
+
         }
 
         private void Reg_Button(object sender, RoutedEventArgs e)
@@ -47,16 +52,16 @@ namespace CarDealershipBeta.View.Pages
             if (MainViewModel.currentUser != 0)
             {
                 phoneService.User_id_Service = MainViewModel.currentUser;
-                DataBaseEntities.GetContext().PhoneService.Add(phoneService);
+                YourRoadDataBaseEntities.GetContext().PhoneService.Add(phoneService);
             }
             else
             {
-                DataBaseEntities.GetContext().PhoneService.Add(phoneService);
+                YourRoadDataBaseEntities.GetContext().PhoneService.Add(phoneService);
             }
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
             }
             catch (Exception ex)
             {
@@ -65,29 +70,59 @@ namespace CarDealershipBeta.View.Pages
 
             Good.Visibility = Visibility.Visible;
         }
-        private void Marka_SelectionChangeCommitted(object sender, EventArgs e)
+
+        private void Engine_SelectionChangeCommitted(object sender, SelectionChangedEventArgs e)
         {
-            
+            UpdateCarId();
         }
-        private void Model_SelectionChangeCommitted(object sender, EventArgs e)
+
+        private void Model_SelectionChangeCommitted(object sender, SelectionChangedEventArgs e)
         {
+            UpdateCarId();
+            if (Model.SelectedItem != null)
+            {
+                string selectedMarka = Marka.SelectedItem.ToString();
+                string selectedModel = Model.SelectedItem.ToString();
+
+                Engine.ItemsSource = YourRoadDataBaseEntities.GetContext().Car
+                    .Where(c => c.Name == selectedMarka && c.Model == selectedModel)
+                    .Select(c => c.Model_Engine)
+                    .Distinct()
+                    .ToList();
+            }
+        }
+
+        private void Marka_SelectionChangeCommitted(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateCarId();
+            if (Marka.SelectedItem != null)
+            {
+                string selectedMarka = Marka.SelectedItem.ToString();
+
+                Model.ItemsSource = YourRoadDataBaseEntities.GetContext().Car
+                    .Where(c => c.Name == selectedMarka)
+                    .Select(c => c.Model)
+                    .Distinct()
+                    .ToList();
+            }
 
         }
-        private void Engine_SelectionChangeCommitted(object sender, EventArgs e)
+        private void UpdateCarId()
         {
+            var selectedMarka = Marka.SelectedItem as string;
+            var selectedModel = Model.SelectedItem as string;
+            var selectedEngine = Engine.SelectedItem as string;
 
-        }
-        private void Transmission_SelectionChangeCommitted(object sender, EventArgs e)
-        {
+            if (selectedMarka != null && selectedModel != null && selectedEngine != null)
+            {
+                var carId = YourRoadDataBaseEntities.GetContext().Car.FirstOrDefault(c => c.Name == selectedMarka && c.Model == selectedModel && c.Model_Engine == selectedEngine)?.Car_id;
 
-        }
-        private void Privod_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            
-        }
-        private void TypeTO_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            
+                if (carId != null)
+                {
+                    var categoryServiceData = YourRoadDataBaseEntities.GetContext().CategoryService.Where(c => c.Car_id == carId).ToList();
+                    GridService.ItemsSource = categoryServiceData;
+                }
+            }
         }
     }
 }

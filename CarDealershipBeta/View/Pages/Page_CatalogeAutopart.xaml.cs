@@ -27,8 +27,8 @@ namespace CarDealershipBeta.View.Pages
         {
             InitializeComponent();
 
-            var autiparts = DataBaseEntities.GetContext().WarehouseAutopart.ToList();
-            Type.ItemsSource = DataBaseEntities.GetContext().WarehouseAutopart.Select(c => c.Type_item).Distinct().ToList();
+            var autiparts = YourRoadDataBaseEntities.GetContext().WarehouseAutopart.ToList();
+            Type.ItemsSource = YourRoadDataBaseEntities.GetContext().WarehouseAutopart.Select(c => c.Type_item).Distinct().ToList();
 
             ListViewCatalogCars.ItemsSource = autiparts.ToList();
         }
@@ -55,13 +55,25 @@ namespace CarDealershipBeta.View.Pages
         }
         private void UpdateFiltrAutopart()
         {
-            var autiparts = DataBaseEntities.GetContext().WarehouseAutopart.ToList();
+            var autoparts = YourRoadDataBaseEntities.GetContext().WarehouseAutopart.ToList();
 
-            autiparts = autiparts.Where(c => (Type.SelectedItem as String == null || c.Type_item == Type.SelectedItem as String)).
-                Where(c => c.Name_item.ToLower().Contains(NameFilter.Text.ToLower()) || c.Type_item.ToLower().Contains(NameFilter.Text.ToLower())).ToList();
+            var filterText = NameFilter.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            ListViewCatalogCars.ItemsSource = autiparts.ToList();
+            autoparts = autoparts.Where(c =>
+                (Type.SelectedItem as String == null || c.Type_item == Type.SelectedItem as String) &&
+                (
+                    filterText.Length == 0 ||
+                    filterText.All(word =>
+                        c.GetType().GetProperties().Any(property =>
+                            property.GetValue(c)?.ToString().ToLower().Contains(word) ?? false
+                        )
+                    )
+                )
+            ).ToList();
+
+            ListViewCatalogCars.ItemsSource = autoparts.ToList();
         }
+
 
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
@@ -103,12 +115,12 @@ namespace CarDealershipBeta.View.Pages
                 basket.Item_id = selectedAutopart.Item_id;
                 if (basket.BasketAutopart_id == 0)
                 {
-                    DataBaseEntities.GetContext().BasketAutopart.Add(basket);
+                    YourRoadDataBaseEntities.GetContext().BasketAutopart.Add(basket);
                 }
 
                 try
                 {
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                 }
                 catch (Exception ex)
                 {

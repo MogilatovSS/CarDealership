@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationOrderService.cs">
+      <DependentUpon>ModelDataBase.tt</DependentUpon>
+    </Compile>
     <Compile Include="BasketAutopart.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
@@ -109,12 +112,6 @@
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="CategoryService.cs">
-      <DependentUpon>ModelDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CategoryService_Warehouse.cs">
-      <DependentUpon>ModelDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Liked.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelDataBase.Context.cs">
@@ -132,10 +129,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDataBase.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PhoneService.cs">
+    <Compile Include="OrderService.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationService.cs">
+    <Compile Include="PhoneService.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Service.cs">
@@ -145,9 +142,6 @@
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>ModelDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserPark.cs">
       <DependentUpon>ModelDataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Page_Applications.xaml.cs">
@@ -168,20 +162,23 @@
     <Compile Include="View\Pages\Page_InsertUser.xaml.cs">
       <DependentUpon>Page_InsertUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Page_JournalWorks.xaml.cs">
+      <DependentUpon>Page_JournalWorks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Page_LogIn.xaml.cs">
       <DependentUpon>Page_LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Page_InformationCar.xaml.cs">
       <DependentUpon>Page_InformationCar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\Page_OrderDocument.xaml.cs">
+      <DependentUpon>Page_OrderDocument.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\Page_Profile.xaml.cs">
       <DependentUpon>Page_Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Page_Registration.xaml.cs">
       <DependentUpon>Page_Registration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\Page_Saved.xaml.cs">
-      <DependentUpon>Page_Saved.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Page_Warehouse.xaml.cs">
       <DependentUpon>Page_Warehouse.xaml</DependentUpon>
@@ -220,6 +217,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\Page_JournalWorks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\Page_LogIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,11 +241,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Page_Profile.xaml">
+    <Page Include="View\Pages\Page_OrderDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\Page_Saved.xaml">
+    <Page Include="View\Pages\Page_Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

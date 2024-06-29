@@ -46,9 +46,9 @@ namespace CarDealershipBeta.View.Pages
         {
             if (Visibility == Visibility.Visible)
             {
-                DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                GridUser.ItemsSource = DataBaseEntities.GetContext().User.ToList();
-                UserType.ItemsSource = DataBaseEntities.GetContext().User.Select(c => c.UserType).Distinct().ToList();
+                YourRoadDataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                GridUser.ItemsSource = YourRoadDataBaseEntities.GetContext().User.ToList();
+                UserType.ItemsSource = YourRoadDataBaseEntities.GetContext().User.Select(c => c.UserType).Distinct().ToList();
                 DataContext = currentUser;
             }
         }
@@ -79,7 +79,7 @@ namespace CarDealershipBeta.View.Pages
                 errors.AppendLine("Неккоректный E-mai");
             }
 
-            var users = DataBaseEntities.GetContext().User.ToList();
+            var users = YourRoadDataBaseEntities.GetContext().User.ToList();
             foreach (var user in users)
             {
                 if (user.Login == textLogin.Text)
@@ -101,11 +101,11 @@ namespace CarDealershipBeta.View.Pages
             currentUser.Password = GetHash(textPassword.Text);
 
             if (currentUser.User_id == 0)
-                DataBaseEntities.GetContext().User.AddOrUpdate(currentUser);
+                YourRoadDataBaseEntities.GetContext().User.AddOrUpdate(currentUser);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace CarDealershipBeta.View.Pages
         {
             currentUser = DataContext as User;
 
-            currentUser = DataBaseEntities.GetContext().User.FirstOrDefault(u => u.Login == currentUser.Login || u.User_id == currentUser.User_id );
+            currentUser = YourRoadDataBaseEntities.GetContext().User.FirstOrDefault(u => u.Login == currentUser.Login || u.User_id == currentUser.User_id );
             DataContext = currentUser;
         }
 

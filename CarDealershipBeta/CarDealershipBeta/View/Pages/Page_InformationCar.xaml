@@ -1,0 +1,100 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_InformationCar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_InformationCar">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Header" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="Black" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="Foreground" Value="#efece7" />
+            </Style>
+            <Style x:Key="HeaderTwo" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="Black" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="Foreground" Value="LightGray" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="30,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="0">
+            <TextBlock x:Name="Text_Block_Name" FontSize="30" Text="{Binding Name}" FontWeight="Black" Foreground="#efece7"/>
+            <TextBlock x:Name="Text_Block_Model" FontSize="30" Text="{Binding Model}" FontWeight="Black" Margin="5 0 0 0" Foreground="#efece7"/>
+        </StackPanel>
+        <TextBlock x:Name="Text_Block_Money" FontSize="50" Foreground="#efece7" VerticalAlignment="Center"
+                   HorizontalAlignment="Left" Margin="30,295,0,0" Grid.Row="1" Grid.Column="0">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} $">
+                    <Binding Path="Price" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <Image x:Name="Image_Name" Width="600" Height="400" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,15" Grid.Row="2">
+            <Image.Source>
+                <Binding Path="Image">
+                    <Binding.TargetNullValue>
+                        <ImageSource>\Resources\icon\missingImage.png</ImageSource>
+                    </Binding.TargetNullValue>
+                </Binding>
+            </Image.Source>
+        </Image>
+        <Button x:Name="BackPage" Content="&lt;-back" Background="Transparent" BorderThickness="0" Foreground="White"
+                VerticalAlignment="Bottom" Grid.Row="1" Width="80" Click="BtnBackPage_Click" Margin="30 0 0 30"
+                HorizontalAlignment="Left" Cursor="Hand"/>
+        <Button x:Name="ButtonSave" Content="Сохранить" Width="180" Height="50" Grid.Row="2" VerticalAlignment="Center"
+                HorizontalAlignment="Right" Margin="0,300,70,0" Click="BtnSave_Click" Cursor="Hand"/>
+        <TextBlock x:Name="Good" Text="Товар добавлен" FontSize="13" Foreground="LightGreen" 
+                   Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,360,110,0" Visibility="Hidden"/>
+        <TextBlock x:Name="Bad" Text="Войдите в аккаунт" FontSize="13" Foreground="Red" 
+                   Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,360,105,0" Visibility="Hidden"/>
+        <StackPanel Grid.Row="2" Grid.Column="2" Width="250" HorizontalAlignment="Left">
+            <TextBlock  Text="Период выпуска: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Нагнетатель: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Тип двигателя: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Марка двигателя: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Объём: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Мощность: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Трансмиссия: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Привод: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Кузов: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Расход топлива: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Подвеска: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Гидроуселитель руля: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Тормоза: " Style="{StaticResource HeaderTwo}"/>
+            <TextBlock  Text="Люк: " Style="{StaticResource HeaderTwo}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2" Width="320" HorizontalAlignment="Right">
+            <TextBlock x:Name="Text_Year" Text="{Binding Year}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Supercharger" Text="{Binding Supercharger}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_TypeEngine" Text="{Binding Type_Engine}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_ModelEngine" Text="{Binding Model_Engine}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Volume" Text="{Binding Volume}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Power" Text="{Binding Power}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Trans" Text="{Binding Transmission}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Drive" Text="{Binding Drive_unit}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Carcase" Text="{Binding Carcase}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Fuel" Text="{Binding Fuel_consumption}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Suspen" Text="{Binding Suspension}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Hydr" Text="{Binding Hydraulic_booster}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Brakes" Text="{Binding Brakes}" Style="{StaticResource Header}"/>
+            <TextBlock x:Name="Text_Hutch" Text="{Binding Hatch}" Style="{StaticResource Header}"/>
+        </StackPanel>
+    </Grid>
+</Page>

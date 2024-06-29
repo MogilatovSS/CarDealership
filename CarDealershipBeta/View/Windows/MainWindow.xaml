@@ -55,7 +55,6 @@
                 Visibility="Hidden">
             <StackPanel>
                 <Button Name="ProfileButton" Command="{Binding Click_Profile}" HorizontalAlignment="Left" Content="Профиль" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed" Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="ProfileButton_Click" Cursor="Hand"/>
-                <Button Name="FavouriteButton" Command="{Binding Click_Saved}" HorizontalAlignment="Left" Content="Избранное" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="FavouritesButton_Click" Cursor="Hand"/>
                 <Button Name="BasketButton" Command="{Binding Click_Basket}" HorizontalAlignment="Left" Content="Корзина" FontSize="17" FontFamily="Bahnschrift SemiLight SemiCondensed"  Height="28" Foreground="#D8BFD8" Style="{StaticResource MaterialDesignFlatDarkButton}" Click="BasketButton_Click"/>
                 <Separator Height="1" Width="170" Background="AliceBlue"/>
                 <Grid>
@@ -79,10 +78,12 @@
                             Command="{Binding Click_Warehouse}" Cursor="Hand" Visibility="Hidden" />
                 </StackPanel>
             </Border>
-            <Border Name="Name_User" CornerRadius="10" MinWidth="30" MaxWidth="250" Margin="0 0 100 0"
-                    HorizontalAlignment="Right" VerticalAlignment="Center" Background="#efece7" Visibility="Hidden">
-                <TextBlock Name="Name_User_Text" Text="********" FontSize="20" Margin="6 4 6 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
+            <StackPanel Orientation="Horizontal"  Margin="0 0 100 0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Name="Timer" FontSize="20" Margin="6 4 60 6" Foreground="#efece7" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Border Name="Name_User" CornerRadius="10" MinWidth="30" MaxWidth="250" Background="#efece7" Visibility="Hidden">
+                    <TextBlock Name="Name_User_Text" Text="********" FontSize="20" Margin="6 4 6 6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <Button x:Name="MinimizeButton" Background="Transparent" Style="{StaticResource MaterialDesignFlatLightButton}"
                             Foreground="LightGray" Height="24" Padding="0" Cursor="Hand" Click="MinimizeButton_Click">

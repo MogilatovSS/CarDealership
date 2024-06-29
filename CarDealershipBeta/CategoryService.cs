@@ -17,8 +17,8 @@ namespace CarDealershipBeta
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CategoryService()
         {
-            this.CategoryService_Warehouse = new HashSet<CategoryService_Warehouse>();
-            this.RegistrationService = new HashSet<RegistrationService>();
+            this.Service = new HashSet<Service>();
+            this.WarehouseAutopart = new HashSet<WarehouseAutopart>();
         }
     
         public int Category_service_id { get; set; }
@@ -28,8 +28,8 @@ namespace CarDealershipBeta
     
         public virtual Car Car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CategoryService_Warehouse> CategoryService_Warehouse { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegistrationService> RegistrationService { get; set; }
+        public virtual ICollection<WarehouseAutopart> WarehouseAutopart { get; set; }
     }
 }

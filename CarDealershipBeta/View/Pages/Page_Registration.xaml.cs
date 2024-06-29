@@ -79,7 +79,7 @@ namespace CarDealershipBeta.View.Pages
                 errors.AppendLine("Неккоректный E-mai");
             }
 
-            var users = DataBaseEntities.GetContext().User.ToList();
+            var users = YourRoadDataBaseEntities.GetContext().User.ToList();
             foreach (var user in users)
             {
                 if (user.Login == _currentUser.Login)
@@ -165,11 +165,11 @@ namespace CarDealershipBeta.View.Pages
             _currentUser.Password = GetHash(Password.Password);
 
             if (_currentUser.User_id == 0)
-                DataBaseEntities.GetContext().User.Add(_currentUser);
+                YourRoadDataBaseEntities.GetContext().User.Add(_currentUser);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
                 MainViewModel.MainFrame.GoBack();
             }
             catch (Exception ex)

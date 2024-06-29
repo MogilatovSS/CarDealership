@@ -54,9 +54,11 @@
             </StackPanel>
             <TextBlock Name="txtHistoryOne" Text="История покупок:" Foreground="White" FontSize="30" Margin="0 95"/>
         </StackPanel>
-        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="30">
-            <Button x:Name="InsertUser" Content="Пользователи" Click="InsertUser_Click" Width="150" Cursor="Hand"/>
-            <Button x:Name="ViewUserApplications" Content="Заявки" Click="ViewUserApplications_Click" Width="150" Margin="0 30 0 0" Cursor="Hand"/>
+        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="30" Width="150">
+            <Button x:Name="OrderDocument" Content="Заказ наряды" Click="OrderDocument_Click" Cursor="Hand"/>
+            <Button x:Name="JournalWorks" Content="Журнал работ" Click="JournalWorks_Click" Margin="0 20 0 0" Cursor="Hand"/>
+            <Button x:Name="InsertUser" Content="Пользователи" Click="InsertUser_Click" Margin="0 20 0 0" Cursor="Hand"/>
+            <Button x:Name="ViewUserApplications" Content="Заявки с формы" Click="ViewUserApplications_Click" Margin="0 20 0 0" Cursor="Hand"/>
         </StackPanel>
         <TextBlock x:Name="txtHistoryTwo" Text="Истории покупок нет" FontSize="50" Foreground="LightGray" HorizontalAlignment="Center"
                    VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2"/>

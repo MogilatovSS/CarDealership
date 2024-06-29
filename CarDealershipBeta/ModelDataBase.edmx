@@ -4,7 +4,25 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CarDealershipAndServiceDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище YourRoadDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationOrderService">
+          <Key>
+            <PropertyRef Name="ApplicationOrderService_id" />
+          </Key>
+          <Property Name="ApplicationOrderService_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="performer" Type="varchar" MaxLength="50" />
+          <Property Name="OrderService_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Autopart_Order">
+          <Key>
+            <PropertyRef Name="OrderService_id" />
+            <PropertyRef Name="Item_id" />
+          </Key>
+          <Property Name="OrderService_id" Type="int" Nullable="false" />
+          <Property Name="Item_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="BasketAutopart">
           <Key>
             <PropertyRef Name="BasketAutopart_id" />
@@ -22,23 +40,10 @@
           <Property Name="Model" Type="varchar" MaxLength="35" />
           <Property Name="Year" Type="varchar" MaxLength="9" />
           <Property Name="Name" Type="varchar" MaxLength="20" />
-          <Property Name="Supercharger" Type="varchar" MaxLength="25" />
-          <Property Name="Type_Engine" Type="varchar" MaxLength="35" />
           <Property Name="Model_Engine" Type="varchar" MaxLength="15" />
-          <Property Name="Volume" Type="varchar" MaxLength="8" />
-          <Property Name="Power" Type="varchar" MaxLength="10" />
-          <Property Name="Transmission" Type="varchar" MaxLength="6" />
-          <Property Name="Drive_unit" Type="varchar" MaxLength="10" />
-          <Property Name="Carcase" Type="varchar" MaxLength="15" />
-          <Property Name="Fuel_consumption" Type="varchar" MaxLength="15" />
-          <Property Name="Suspension" Type="varchar" MaxLength="12" />
-          <Property Name="Hydraulic_booster" Type="varchar" MaxLength="3" />
-          <Property Name="Brakes" Type="varchar" MaxLength="10" />
-          <Property Name="Hatch" Type="varchar" MaxLength="3" />
           <Property Name="Car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" />
-          <Property Name="Amount" Type="int" />
         </EntityType>
         <EntityType Name="CategoryService">
           <Key>
@@ -49,21 +54,30 @@
           <Property Name="Number_service" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Mileage" Type="varchar" MaxLength="6" Nullable="false" />
         </EntityType>
+        <EntityType Name="CategoryService_Service">
+          <Key>
+            <PropertyRef Name="Category_service_id" />
+            <PropertyRef Name="Service_id" />
+          </Key>
+          <Property Name="Category_service_id" Type="int" Nullable="false" />
+          <Property Name="Service_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CategoryService_Warehouse">
           <Key>
-            <PropertyRef Name="CW_id" />
+            <PropertyRef Name="Category_service_id" />
+            <PropertyRef Name="Item_id" />
           </Key>
           <Property Name="Category_service_id" Type="int" Nullable="false" />
           <Property Name="Item_id" Type="int" Nullable="false" />
-          <Property Name="CW_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="Liked">
+        <EntityType Name="OrderService">
           <Key>
-            <PropertyRef Name="Liked_id" />
+            <PropertyRef Name="OrderService_id" />
           </Key>
-          <Property Name="Liked_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="OrderService_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
           <Property Name="Car_id" Type="int" Nullable="false" />
+          <Property Name="User_id" Type="int" />
         </EntityType>
         <EntityType Name="PhoneService">
           <Key>
@@ -74,17 +88,6 @@
           <Property Name="Phone_service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User_id_Service" Type="int" />
         </EntityType>
-        <EntityType Name="RegistrationService">
-          <Key>
-            <PropertyRef Name="Reg_id" />
-          </Key>
-          <Property Name="User_id" Type="int" Nullable="false" />
-          <Property Name="Date" Type="smalldatetime" Nullable="false" />
-          <Property Name="Reg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Lot" Type="int" Nullable="false" />
-          <Property Name="Actual" Type="bit" Nullable="false" />
-          <Property Name="Category_service_id" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="Service_id" />
@@ -93,6 +96,14 @@
           <Property Name="Type_service" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Time" Type="time" Precision="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sevice_Order">
+          <Key>
+            <PropertyRef Name="OrderService_id" />
+            <PropertyRef Name="Service_id" />
+          </Key>
+          <Property Name="OrderService_id" Type="int" Nullable="false" />
+          <Property Name="Service_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -114,14 +125,7 @@
           <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserType" Type="varchar" MaxLength="10" />
           <Property Name="Image" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="UserPark">
-          <Key>
-            <PropertyRef Name="UserPark_id" />
-          </Key>
-          <Property Name="User_id" Type="int" Nullable="false" />
-          <Property Name="UserPark_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Car_id" Type="int" Nullable="false" />
+          <Property Name="TimeLastEntry" Type="datetime" />
         </EntityType>
         <EntityType Name="WarehouseAutopart">
           <Key>
@@ -131,31 +135,41 @@
           <Property Name="Type_item" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Name_item" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Amount" Type="int" />
-          <Property Name="ForSale" Type="bit" />
           <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Service_id" Type="int" />
         </EntityType>
-        <Association Name="FK_Basket_Car1">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+        <Association Name="FK_ApplicationOrderService_OrderService">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="1" />
+          <End Role="ApplicationOrderService" Type="Self.ApplicationOrderService" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Car_id" />
+            <Principal Role="OrderService">
+              <PropertyRef Name="OrderService_id" />
             </Principal>
-            <Dependent Role="Liked">
-              <PropertyRef Name="Car_id" />
+            <Dependent Role="ApplicationOrderService">
+              <PropertyRef Name="OrderService_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Basket_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+        <Association Name="FK_Autopart_Order_OrderService">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="1" />
+          <End Role="Autopart_Order" Type="Self.Autopart_Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_id" />
+            <Principal Role="OrderService">
+              <PropertyRef Name="OrderService_id" />
             </Principal>
-            <Dependent Role="Liked">
-              <PropertyRef Name="User_id" />
+            <Dependent Role="Autopart_Order">
+              <PropertyRef Name="OrderService_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Autopart_Order_WarehouseAutopart">
+          <End Role="WarehouseAutopart" Type="Self.WarehouseAutopart" Multiplicity="1" />
+          <End Role="Autopart_Order" Type="Self.Autopart_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseAutopart">
+              <PropertyRef Name="Item_id" />
+            </Principal>
+            <Dependent Role="Autopart_Order">
+              <PropertyRef Name="Item_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -195,6 +209,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CategoryService_Service_CategoryService">
+          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="1" />
+          <End Role="CategoryService_Service" Type="Self.CategoryService_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryService">
+              <PropertyRef Name="Category_service_id" />
+            </Principal>
+            <Dependent Role="CategoryService_Service">
+              <PropertyRef Name="Category_service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryService_Service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="CategoryService_Service" Type="Self.CategoryService_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_id" />
+            </Principal>
+            <Dependent Role="CategoryService_Service">
+              <PropertyRef Name="Service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CategoryService_Warehouse_CategoryService">
           <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="1" />
           <End Role="CategoryService_Warehouse" Type="Self.CategoryService_Warehouse" Multiplicity="*" />
@@ -219,26 +257,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RegistrationService_CategoryService">
-          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="1" />
-          <End Role="RegistrationService" Type="Self.RegistrationService" Multiplicity="*" />
+        <Association Name="FK_OrderService_Car">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CategoryService">
-              <PropertyRef Name="Category_service_id" />
+            <Principal Role="Car">
+              <PropertyRef Name="Car_id" />
             </Principal>
-            <Dependent Role="RegistrationService">
-              <PropertyRef Name="Category_service_id" />
+            <Dependent Role="OrderService">
+              <PropertyRef Name="Car_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RegistrationService_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="RegistrationService" Type="Self.RegistrationService" Multiplicity="*" />
+        <Association Name="FK_OrderService_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="User_id" />
             </Principal>
-            <Dependent Role="RegistrationService">
+            <Dependent Role="OrderService">
               <PropertyRef Name="User_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -255,62 +293,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserPark_Car">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="UserPark" Type="Self.UserPark" Multiplicity="*" />
+        <Association Name="FK_Sevice_Order_OrderService">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="1" />
+          <End Role="Sevice_Order" Type="Self.Sevice_Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Car_id" />
+            <Principal Role="OrderService">
+              <PropertyRef Name="OrderService_id" />
             </Principal>
-            <Dependent Role="UserPark">
-              <PropertyRef Name="Car_id" />
+            <Dependent Role="Sevice_Order">
+              <PropertyRef Name="OrderService_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserPark_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserPark" Type="Self.UserPark" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_id" />
-            </Principal>
-            <Dependent Role="UserPark">
-              <PropertyRef Name="User_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WarehouseAutopart_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="WarehouseAutopart" Type="Self.WarehouseAutopart" Multiplicity="*" />
+        <Association Name="FK_Sevice_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Sevice_Order" Type="Self.Sevice_Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service">
               <PropertyRef Name="Service_id" />
             </Principal>
-            <Dependent Role="WarehouseAutopart">
+            <Dependent Role="Sevice_Order">
               <PropertyRef Name="Service_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище CarDealershipAndServiceDataBaseModelContainer">
+        <EntityContainer Name="Хранилище YourRoadDataBaseModelContainer">
+          <EntitySet Name="ApplicationOrderService" EntityType="Self.ApplicationOrderService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autopart_Order" EntityType="Self.Autopart_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BasketAutopart" EntityType="Self.BasketAutopart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryService" EntityType="Self.CategoryService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryService_Service" EntityType="Self.CategoryService_Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoryService_Warehouse" EntityType="Self.CategoryService_Warehouse" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Liked" EntityType="Self.Liked" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderService" EntityType="Self.OrderService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhoneService" EntityType="Self.PhoneService" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RegistrationService" EntityType="Self.RegistrationService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sevice_Order" EntityType="Self.Sevice_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserPark" EntityType="Self.UserPark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAutopart" EntityType="Self.WarehouseAutopart" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Basket_Car1" Association="Self.FK_Basket_Car1">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="Liked" EntitySet="Liked" />
+          <AssociationSet Name="FK_ApplicationOrderService_OrderService" Association="Self.FK_ApplicationOrderService_OrderService">
+            <End Role="OrderService" EntitySet="OrderService" />
+            <End Role="ApplicationOrderService" EntitySet="ApplicationOrderService" />
           </AssociationSet>
-          <AssociationSet Name="FK_Basket_User" Association="Self.FK_Basket_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Liked" EntitySet="Liked" />
+          <AssociationSet Name="FK_Autopart_Order_OrderService" Association="Self.FK_Autopart_Order_OrderService">
+            <End Role="OrderService" EntitySet="OrderService" />
+            <End Role="Autopart_Order" EntitySet="Autopart_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Autopart_Order_WarehouseAutopart" Association="Self.FK_Autopart_Order_WarehouseAutopart">
+            <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
+            <End Role="Autopart_Order" EntitySet="Autopart_Order" />
           </AssociationSet>
           <AssociationSet Name="FK_BasketAutopart_User" Association="Self.FK_BasketAutopart_User">
             <End Role="User" EntitySet="User" />
@@ -324,6 +356,14 @@
             <End Role="Car" EntitySet="Car" />
             <End Role="CategoryService" EntitySet="CategoryService" />
           </AssociationSet>
+          <AssociationSet Name="FK_CategoryService_Service_CategoryService" Association="Self.FK_CategoryService_Service_CategoryService">
+            <End Role="CategoryService" EntitySet="CategoryService" />
+            <End Role="CategoryService_Service" EntitySet="CategoryService_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryService_Service_Service" Association="Self.FK_CategoryService_Service_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="CategoryService_Service" EntitySet="CategoryService_Service" />
+          </AssociationSet>
           <AssociationSet Name="FK_CategoryService_Warehouse_CategoryService" Association="Self.FK_CategoryService_Warehouse_CategoryService">
             <End Role="CategoryService" EntitySet="CategoryService" />
             <End Role="CategoryService_Warehouse" EntitySet="CategoryService_Warehouse" />
@@ -332,36 +372,42 @@
             <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
             <End Role="CategoryService_Warehouse" EntitySet="CategoryService_Warehouse" />
           </AssociationSet>
-          <AssociationSet Name="FK_RegistrationService_CategoryService" Association="Self.FK_RegistrationService_CategoryService">
-            <End Role="CategoryService" EntitySet="CategoryService" />
-            <End Role="RegistrationService" EntitySet="RegistrationService" />
+          <AssociationSet Name="FK_OrderService_Car" Association="Self.FK_OrderService_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="OrderService" EntitySet="OrderService" />
           </AssociationSet>
-          <AssociationSet Name="FK_RegistrationService_User" Association="Self.FK_RegistrationService_User">
+          <AssociationSet Name="FK_OrderService_User" Association="Self.FK_OrderService_User">
             <End Role="User" EntitySet="User" />
-            <End Role="RegistrationService" EntitySet="RegistrationService" />
+            <End Role="OrderService" EntitySet="OrderService" />
           </AssociationSet>
           <AssociationSet Name="FK_Service_User" Association="Self.FK_Service_User">
             <End Role="User" EntitySet="User" />
             <End Role="PhoneService" EntitySet="PhoneService" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserPark_Car" Association="Self.FK_UserPark_Car">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="UserPark" EntitySet="UserPark" />
+          <AssociationSet Name="FK_Sevice_Order_OrderService" Association="Self.FK_Sevice_Order_OrderService">
+            <End Role="OrderService" EntitySet="OrderService" />
+            <End Role="Sevice_Order" EntitySet="Sevice_Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserPark_User" Association="Self.FK_UserPark_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserPark" EntitySet="UserPark" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAutopart_Service" Association="Self.FK_WarehouseAutopart_Service">
+          <AssociationSet Name="FK_Sevice_Order_Service" Association="Self.FK_Sevice_Order_Service">
             <End Role="Service" EntitySet="Service" />
-            <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
+            <End Role="Sevice_Order" EntitySet="Sevice_Order" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CarDealershipAndServiceDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="YourRoadDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationOrderService">
+          <Key>
+            <PropertyRef Name="ApplicationOrderService_id" />
+          </Key>
+          <Property Name="ApplicationOrderService_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="performer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderService_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderService" Relationship="Self.FK_ApplicationOrderService_OrderService" FromRole="ApplicationOrderService" ToRole="OrderService" />
+        </EntityType>
         <EntityType Name="BasketAutopart">
           <Key>
             <PropertyRef Name="BasketAutopart_id" />
@@ -381,26 +427,12 @@
           <Property Name="Model" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="Year" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Supercharger" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Type_Engine" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="Model_Engine" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Volume" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="Power" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Transmission" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Drive_unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Carcase" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Fuel_consumption" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Suspension" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="Hydraulic_booster" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="Brakes" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Hatch" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Int32" />
-          <NavigationProperty Name="Liked" Relationship="Self.FK_Basket_Car1" FromRole="Car" ToRole="Liked" />
           <NavigationProperty Name="CategoryService" Relationship="Self.FK_CategoryService_Car" FromRole="Car" ToRole="CategoryService" />
-          <NavigationProperty Name="UserPark" Relationship="Self.FK_UserPark_Car" FromRole="Car" ToRole="UserPark" />
+          <NavigationProperty Name="OrderService" Relationship="Self.FK_OrderService_Car" FromRole="Car" ToRole="OrderService" />
         </EntityType>
         <EntityType Name="CategoryService">
           <Key>
@@ -411,28 +443,22 @@
           <Property Name="Number_service" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mileage" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Self.FK_CategoryService_Car" FromRole="CategoryService" ToRole="Car" />
-          <NavigationProperty Name="CategoryService_Warehouse" Relationship="Self.FK_CategoryService_Warehouse_CategoryService" FromRole="CategoryService" ToRole="CategoryService_Warehouse" />
-          <NavigationProperty Name="RegistrationService" Relationship="Self.FK_RegistrationService_CategoryService" FromRole="CategoryService" ToRole="RegistrationService" />
+          <NavigationProperty Name="Service" Relationship="Self.CategoryService_Service" FromRole="CategoryService" ToRole="Service" />
+          <NavigationProperty Name="WarehouseAutopart" Relationship="Self.CategoryService_Warehouse" FromRole="CategoryService" ToRole="WarehouseAutopart" />
         </EntityType>
-        <EntityType Name="CategoryService_Warehouse">
+        <EntityType Name="OrderService">
           <Key>
-            <PropertyRef Name="CW_id" />
+            <PropertyRef Name="OrderService_id" />
           </Key>
-          <Property Name="Category_service_id" Type="Int32" Nullable="false" />
-          <Property Name="Item_id" Type="Int32" Nullable="false" />
-          <Property Name="CW_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="CategoryService" Relationship="Self.FK_CategoryService_Warehouse_CategoryService" FromRole="CategoryService_Warehouse" ToRole="CategoryService" />
-          <NavigationProperty Name="WarehouseAutopart" Relationship="Self.FK_CategoryService_Warehouse_Warehouse" FromRole="CategoryService_Warehouse" ToRole="WarehouseAutopart" />
-        </EntityType>
-        <EntityType Name="Liked">
-          <Key>
-            <PropertyRef Name="Liked_id" />
-          </Key>
-          <Property Name="Liked_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="OrderService_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Car_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Car" Relationship="Self.FK_Basket_Car1" FromRole="Liked" ToRole="Car" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Basket_User" FromRole="Liked" ToRole="User" />
+          <Property Name="User_id" Type="Int32" />
+          <NavigationProperty Name="ApplicationOrderService" Relationship="Self.FK_ApplicationOrderService_OrderService" FromRole="OrderService" ToRole="ApplicationOrderService" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_OrderService_Car" FromRole="OrderService" ToRole="Car" />
+          <NavigationProperty Name="User" Relationship="Self.FK_OrderService_User" FromRole="OrderService" ToRole="User" />
+          <NavigationProperty Name="WarehouseAutopart" Relationship="Self.Autopart_Order" FromRole="OrderService" ToRole="WarehouseAutopart" />
+          <NavigationProperty Name="Service" Relationship="Self.Sevice_Order" FromRole="OrderService" ToRole="Service" />
         </EntityType>
         <EntityType Name="PhoneService">
           <Key>
@@ -444,19 +470,6 @@
           <Property Name="User_id_Service" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Service_User" FromRole="PhoneService" ToRole="User" />
         </EntityType>
-        <EntityType Name="RegistrationService">
-          <Key>
-            <PropertyRef Name="Reg_id" />
-          </Key>
-          <Property Name="User_id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Reg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Lot" Type="Int32" Nullable="false" />
-          <Property Name="Actual" Type="Boolean" Nullable="false" />
-          <Property Name="Category_service_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CategoryService" Relationship="Self.FK_RegistrationService_CategoryService" FromRole="RegistrationService" ToRole="CategoryService" />
-          <NavigationProperty Name="User" Relationship="Self.FK_RegistrationService_User" FromRole="RegistrationService" ToRole="User" />
-        </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="Service_id" />
@@ -465,7 +478,8 @@
           <Property Name="Type_service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="Time" Type="Time" Nullable="false" Precision="4" />
-          <NavigationProperty Name="WarehouseAutopart" Relationship="Self.FK_WarehouseAutopart_Service" FromRole="Service" ToRole="WarehouseAutopart" />
+          <NavigationProperty Name="CategoryService" Relationship="Self.CategoryService_Service" FromRole="Service" ToRole="CategoryService" />
+          <NavigationProperty Name="OrderService" Relationship="Self.Sevice_Order" FromRole="Service" ToRole="OrderService" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -487,21 +501,10 @@
           <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TimeLastEntry" Type="DateTime" />
           <NavigationProperty Name="BasketAutopart" Relationship="Self.FK_BasketAutopart_User" FromRole="User" ToRole="BasketAutopart" />
-          <NavigationProperty Name="Liked" Relationship="Self.FK_Basket_User" FromRole="User" ToRole="Liked" />
+          <NavigationProperty Name="OrderService" Relationship="Self.FK_OrderService_User" FromRole="User" ToRole="OrderService" />
           <NavigationProperty Name="PhoneService" Relationship="Self.FK_Service_User" FromRole="User" ToRole="PhoneService" />
-          <NavigationProperty Name="RegistrationService" Relationship="Self.FK_RegistrationService_User" FromRole="User" ToRole="RegistrationService" />
-          <NavigationProperty Name="UserPark" Relationship="Self.FK_UserPark_User" FromRole="User" ToRole="UserPark" />
-        </EntityType>
-        <EntityType Name="UserPark">
-          <Key>
-            <PropertyRef Name="UserPark_id" />
-          </Key>
-          <Property Name="User_id" Type="Int32" Nullable="false" />
-          <Property Name="UserPark_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Car_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Car" Relationship="Self.FK_UserPark_Car" FromRole="UserPark" ToRole="Car" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserPark_User" FromRole="UserPark" ToRole="User" />
         </EntityType>
         <EntityType Name="WarehouseAutopart">
           <Key>
@@ -511,13 +514,23 @@
           <Property Name="Type_item" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name_item" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Amount" Type="Int32" />
-          <Property Name="ForSale" Type="Boolean" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Service_id" Type="Int32" />
           <NavigationProperty Name="BasketAutopart" Relationship="Self.FK_BasketAutopart_WarehouseAutopart" FromRole="WarehouseAutopart" ToRole="BasketAutopart" />
-          <NavigationProperty Name="CategoryService_Warehouse" Relationship="Self.FK_CategoryService_Warehouse_Warehouse" FromRole="WarehouseAutopart" ToRole="CategoryService_Warehouse" />
-          <NavigationProperty Name="Service" Relationship="Self.FK_WarehouseAutopart_Service" FromRole="WarehouseAutopart" ToRole="Service" />
+          <NavigationProperty Name="OrderService" Relationship="Self.Autopart_Order" FromRole="WarehouseAutopart" ToRole="OrderService" />
+          <NavigationProperty Name="CategoryService" Relationship="Self.CategoryService_Warehouse" FromRole="WarehouseAutopart" ToRole="CategoryService" />
         </EntityType>
+        <Association Name="FK_ApplicationOrderService_OrderService">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="1" />
+          <End Role="ApplicationOrderService" Type="Self.ApplicationOrderService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderService">
+              <PropertyRef Name="OrderService_id" />
+            </Principal>
+            <Dependent Role="ApplicationOrderService">
+              <PropertyRef Name="OrderService_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BasketAutopart_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="BasketAutopart" Type="Self.BasketAutopart" Multiplicity="*" />
@@ -542,18 +555,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Basket_Car1">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Car_id" />
-            </Principal>
-            <Dependent Role="Liked">
-              <PropertyRef Name="Car_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CategoryService_Car">
           <End Role="Car" Type="Self.Car" Multiplicity="1" />
           <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="*" />
@@ -566,62 +567,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserPark_Car">
+        <Association Name="FK_OrderService_Car">
           <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="UserPark" Type="Self.UserPark" Multiplicity="*" />
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Car">
               <PropertyRef Name="Car_id" />
             </Principal>
-            <Dependent Role="UserPark">
+            <Dependent Role="OrderService">
               <PropertyRef Name="Car_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CategoryService_Warehouse_CategoryService">
-          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="1" />
-          <End Role="CategoryService_Warehouse" Type="Self.CategoryService_Warehouse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CategoryService">
-              <PropertyRef Name="Category_service_id" />
-            </Principal>
-            <Dependent Role="CategoryService_Warehouse">
-              <PropertyRef Name="Category_service_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RegistrationService_CategoryService">
-          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="1" />
-          <End Role="RegistrationService" Type="Self.RegistrationService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CategoryService">
-              <PropertyRef Name="Category_service_id" />
-            </Principal>
-            <Dependent Role="RegistrationService">
-              <PropertyRef Name="Category_service_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryService_Warehouse_Warehouse">
-          <End Role="WarehouseAutopart" Type="Self.WarehouseAutopart" Multiplicity="1" />
-          <End Role="CategoryService_Warehouse" Type="Self.CategoryService_Warehouse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WarehouseAutopart">
-              <PropertyRef Name="Item_id" />
-            </Principal>
-            <Dependent Role="CategoryService_Warehouse">
-              <PropertyRef Name="Item_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Basket_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+        <Association Name="FK_OrderService_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="User_id" />
             </Principal>
-            <Dependent Role="Liked">
+            <Dependent Role="OrderService">
               <PropertyRef Name="User_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -638,55 +603,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RegistrationService_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="RegistrationService" Type="Self.RegistrationService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_id" />
-            </Principal>
-            <Dependent Role="RegistrationService">
-              <PropertyRef Name="User_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WarehouseAutopart_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+        <Association Name="Autopart_Order">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
           <End Role="WarehouseAutopart" Type="Self.WarehouseAutopart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="Service_id" />
-            </Principal>
-            <Dependent Role="WarehouseAutopart">
-              <PropertyRef Name="Service_id" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserPark_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserPark" Type="Self.UserPark" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_id" />
-            </Principal>
-            <Dependent Role="UserPark">
-              <PropertyRef Name="User_id" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="CategoryService_Service">
+          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="*" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DataBaseEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="CategoryService_Warehouse">
+          <End Role="CategoryService" Type="Self.CategoryService" Multiplicity="*" />
+          <End Role="WarehouseAutopart" Type="Self.WarehouseAutopart" Multiplicity="*" />
+        </Association>
+        <Association Name="Sevice_Order">
+          <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="YourRoadDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationOrderService" EntityType="Self.ApplicationOrderService" />
           <EntitySet Name="BasketAutopart" EntityType="Self.BasketAutopart" />
           <EntitySet Name="Car" EntityType="Self.Car" />
           <EntitySet Name="CategoryService" EntityType="Self.CategoryService" />
-          <EntitySet Name="CategoryService_Warehouse" EntityType="Self.CategoryService_Warehouse" />
-          <EntitySet Name="Liked" EntityType="Self.Liked" />
+          <EntitySet Name="OrderService" EntityType="Self.OrderService" />
           <EntitySet Name="PhoneService" EntityType="Self.PhoneService" />
-          <EntitySet Name="RegistrationService" EntityType="Self.RegistrationService" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="UserPark" EntityType="Self.UserPark" />
           <EntitySet Name="WarehouseAutopart" EntityType="Self.WarehouseAutopart" />
+          <AssociationSet Name="FK_ApplicationOrderService_OrderService" Association="Self.FK_ApplicationOrderService_OrderService">
+            <End Role="OrderService" EntitySet="OrderService" />
+            <End Role="ApplicationOrderService" EntitySet="ApplicationOrderService" />
+          </AssociationSet>
           <AssociationSet Name="FK_BasketAutopart_User" Association="Self.FK_BasketAutopart_User">
             <End Role="User" EntitySet="User" />
             <End Role="BasketAutopart" EntitySet="BasketAutopart" />
@@ -695,49 +642,37 @@
             <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
             <End Role="BasketAutopart" EntitySet="BasketAutopart" />
           </AssociationSet>
-          <AssociationSet Name="FK_Basket_Car1" Association="Self.FK_Basket_Car1">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="Liked" EntitySet="Liked" />
-          </AssociationSet>
           <AssociationSet Name="FK_CategoryService_Car" Association="Self.FK_CategoryService_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="CategoryService" EntitySet="CategoryService" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserPark_Car" Association="Self.FK_UserPark_Car">
+          <AssociationSet Name="FK_OrderService_Car" Association="Self.FK_OrderService_Car">
             <End Role="Car" EntitySet="Car" />
-            <End Role="UserPark" EntitySet="UserPark" />
+            <End Role="OrderService" EntitySet="OrderService" />
           </AssociationSet>
-          <AssociationSet Name="FK_CategoryService_Warehouse_CategoryService" Association="Self.FK_CategoryService_Warehouse_CategoryService">
-            <End Role="CategoryService" EntitySet="CategoryService" />
-            <End Role="CategoryService_Warehouse" EntitySet="CategoryService_Warehouse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RegistrationService_CategoryService" Association="Self.FK_RegistrationService_CategoryService">
-            <End Role="CategoryService" EntitySet="CategoryService" />
-            <End Role="RegistrationService" EntitySet="RegistrationService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryService_Warehouse_Warehouse" Association="Self.FK_CategoryService_Warehouse_Warehouse">
-            <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
-            <End Role="CategoryService_Warehouse" EntitySet="CategoryService_Warehouse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Basket_User" Association="Self.FK_Basket_User">
+          <AssociationSet Name="FK_OrderService_User" Association="Self.FK_OrderService_User">
             <End Role="User" EntitySet="User" />
-            <End Role="Liked" EntitySet="Liked" />
+            <End Role="OrderService" EntitySet="OrderService" />
           </AssociationSet>
           <AssociationSet Name="FK_Service_User" Association="Self.FK_Service_User">
             <End Role="User" EntitySet="User" />
             <End Role="PhoneService" EntitySet="PhoneService" />
           </AssociationSet>
-          <AssociationSet Name="FK_RegistrationService_User" Association="Self.FK_RegistrationService_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="RegistrationService" EntitySet="RegistrationService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehouseAutopart_Service" Association="Self.FK_WarehouseAutopart_Service">
-            <End Role="Service" EntitySet="Service" />
+          <AssociationSet Name="Autopart_Order" Association="Self.Autopart_Order">
+            <End Role="OrderService" EntitySet="OrderService" />
             <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserPark_User" Association="Self.FK_UserPark_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserPark" EntitySet="UserPark" />
+          <AssociationSet Name="CategoryService_Service" Association="Self.CategoryService_Service">
+            <End Role="CategoryService" EntitySet="CategoryService" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryService_Warehouse" Association="Self.CategoryService_Warehouse">
+            <End Role="CategoryService" EntitySet="CategoryService" />
+            <End Role="WarehouseAutopart" EntitySet="WarehouseAutopart" />
+          </AssociationSet>
+          <AssociationSet Name="Sevice_Order" Association="Self.Sevice_Order">
+            <End Role="OrderService" EntitySet="OrderService" />
+            <End Role="Service" EntitySet="Service" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -745,9 +680,20 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище CarDealershipAndServiceDataBaseModelContainer" CdmEntityContainer="DataBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище YourRoadDataBaseModelContainer" CdmEntityContainer="YourRoadDataBaseEntities">
+          <EntitySetMapping Name="ApplicationOrderService">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.ApplicationOrderService">
+              <MappingFragment StoreEntitySet="ApplicationOrderService">
+                <ScalarProperty Name="ApplicationOrderService_id" ColumnName="ApplicationOrderService_id" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="performer" ColumnName="performer" />
+                <ScalarProperty Name="OrderService_id" ColumnName="OrderService_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BasketAutopart">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.BasketAutopart">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.BasketAutopart">
               <MappingFragment StoreEntitySet="BasketAutopart">
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
                 <ScalarProperty Name="Item_id" ColumnName="Item_id" />
@@ -758,33 +704,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Car">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.Car">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Supercharger" ColumnName="Supercharger" />
-                <ScalarProperty Name="Type_Engine" ColumnName="Type_Engine" />
                 <ScalarProperty Name="Model_Engine" ColumnName="Model_Engine" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="Power" ColumnName="Power" />
-                <ScalarProperty Name="Transmission" ColumnName="Transmission" />
-                <ScalarProperty Name="Drive_unit" ColumnName="Drive_unit" />
-                <ScalarProperty Name="Carcase" ColumnName="Carcase" />
-                <ScalarProperty Name="Fuel_consumption" ColumnName="Fuel_consumption" />
-                <ScalarProperty Name="Suspension" ColumnName="Suspension" />
-                <ScalarProperty Name="Hydraulic_booster" ColumnName="Hydraulic_booster" />
-                <ScalarProperty Name="Brakes" ColumnName="Brakes" />
-                <ScalarProperty Name="Hatch" ColumnName="Hatch" />
                 <ScalarProperty Name="Car_id" ColumnName="Car_id" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CategoryService">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.CategoryService">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.CategoryService">
               <MappingFragment StoreEntitySet="CategoryService">
                 <ScalarProperty Name="Category_service_id" ColumnName="Category_service_id" />
                 <ScalarProperty Name="Car_id" ColumnName="Car_id" />
@@ -793,26 +726,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CategoryService_Warehouse">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.CategoryService_Warehouse">
-              <MappingFragment StoreEntitySet="CategoryService_Warehouse">
-                <ScalarProperty Name="Category_service_id" ColumnName="Category_service_id" />
-                <ScalarProperty Name="Item_id" ColumnName="Item_id" />
-                <ScalarProperty Name="CW_id" ColumnName="CW_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Liked">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.Liked">
-              <MappingFragment StoreEntitySet="Liked">
-                <ScalarProperty Name="Liked_id" ColumnName="Liked_id" />
-                <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <EntitySetMapping Name="OrderService">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.OrderService">
+              <MappingFragment StoreEntitySet="OrderService">
+                <ScalarProperty Name="OrderService_id" ColumnName="OrderService_id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhoneService">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.PhoneService">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.PhoneService">
               <MappingFragment StoreEntitySet="PhoneService">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
@@ -821,20 +746,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RegistrationService">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.RegistrationService">
-              <MappingFragment StoreEntitySet="RegistrationService">
-                <ScalarProperty Name="User_id" ColumnName="User_id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Reg_id" ColumnName="Reg_id" />
-                <ScalarProperty Name="Lot" ColumnName="Lot" />
-                <ScalarProperty Name="Actual" ColumnName="Actual" />
-                <ScalarProperty Name="Category_service_id" ColumnName="Category_service_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Service">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.Service">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.Service">
               <MappingFragment StoreEntitySet="Service">
                 <ScalarProperty Name="Service_id" ColumnName="Service_id" />
                 <ScalarProperty Name="Type_service" ColumnName="Type_service" />
@@ -844,7 +757,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.sysdiagrams">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -855,7 +768,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.User">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -863,31 +776,53 @@
                 <ScalarProperty Name="User_id" ColumnName="User_id" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserPark">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.UserPark">
-              <MappingFragment StoreEntitySet="UserPark">
-                <ScalarProperty Name="User_id" ColumnName="User_id" />
-                <ScalarProperty Name="UserPark_id" ColumnName="UserPark_id" />
-                <ScalarProperty Name="Car_id" ColumnName="Car_id" />
+                <ScalarProperty Name="TimeLastEntry" ColumnName="TimeLastEntry" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WarehouseAutopart">
-            <EntityTypeMapping TypeName="CarDealershipAndServiceDataBaseModel.WarehouseAutopart">
+            <EntityTypeMapping TypeName="YourRoadDataBaseModel.WarehouseAutopart">
               <MappingFragment StoreEntitySet="WarehouseAutopart">
                 <ScalarProperty Name="Item_id" ColumnName="Item_id" />
                 <ScalarProperty Name="Type_item" ColumnName="Type_item" />
                 <ScalarProperty Name="Name_item" ColumnName="Name_item" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="ForSale" ColumnName="ForSale" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Autopart_Order" TypeName="YourRoadDataBaseModel.Autopart_Order" StoreEntitySet="Autopart_Order">
+            <EndProperty Name="OrderService">
+              <ScalarProperty Name="OrderService_id" ColumnName="OrderService_id" />
+            </EndProperty>
+            <EndProperty Name="WarehouseAutopart">
+              <ScalarProperty Name="Item_id" ColumnName="Item_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CategoryService_Service" TypeName="YourRoadDataBaseModel.CategoryService_Service" StoreEntitySet="CategoryService_Service">
+            <EndProperty Name="CategoryService">
+              <ScalarProperty Name="Category_service_id" ColumnName="Category_service_id" />
+            </EndProperty>
+            <EndProperty Name="Service">
+              <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CategoryService_Warehouse" TypeName="YourRoadDataBaseModel.CategoryService_Warehouse" StoreEntitySet="CategoryService_Warehouse">
+            <EndProperty Name="CategoryService">
+              <ScalarProperty Name="Category_service_id" ColumnName="Category_service_id" />
+            </EndProperty>
+            <EndProperty Name="WarehouseAutopart">
+              <ScalarProperty Name="Item_id" ColumnName="Item_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Sevice_Order" TypeName="YourRoadDataBaseModel.Sevice_Order" StoreEntitySet="Sevice_Order">
+            <EndProperty Name="OrderService">
+              <ScalarProperty Name="OrderService_id" ColumnName="OrderService_id" />
+            </EndProperty>
+            <EndProperty Name="Service">
+              <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,95 @@
+﻿<Page x:Class="CarDealershipBeta.View.Pages.Page_Profile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarDealershipBeta.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="1280"
+      Title="Page_Profile" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid x:Name="GridProfile" Visibility="Hidden">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2" BorderBrush="White" VerticalAlignment="Top" Width="190" Height="250"
+                HorizontalAlignment="Left" Margin="25 25 0 0">
+            <Image Cursor="Hand" Stretch="Fill" Width="190" Height="250"
+               Mouse.MouseDown="MouseDownImgCar">
+                <Image.Clip>
+                    <RectangleGeometry RadiusX="20" RadiusY="20" Rect="0 0 390 300"/>
+                </Image.Clip>
+                <Image.Source>
+                    <Binding Path="Image">
+                        <Binding.TargetNullValue>
+                            <ImageSource>\Resources\icon\missingImage.png</ImageSource>
+                        </Binding.TargetNullValue>
+                    </Binding>
+                </Image.Source>
+            </Image>
+        </Border>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="0 20 0 0">
+            <StackPanel Orientation="Horizontal">
+                <Border Background="LightGray" Width="350" CornerRadius="8" Padding="4">
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                        <TextBlock Text="Login: " FontSize="25"/>
+                        <TextBox x:Name="textLogin" Text="{Binding Login}" Grid.Column="1" FontSize="25" TextChanged="LogIn_TextChanged"/>
+                    </StackPanel>
+                </Border>
+                <Button x:Name="BtnLogInSave" Content="Сохранить изменения" Click="BtnSaveLogin_Click" Margin="20 0 0 0" Visibility="Hidden" Background="Transparent" BorderThickness="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Border Background="LightGray" Width="350" CornerRadius="8" Padding="4" Margin="0 20 0 0">
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
+                        <TextBlock Text="Email: " FontSize="25"/>
+                        <TextBox x:Name="textEmail" Text="{Binding Email}" Grid.Column="1" FontSize="25" TextChanged="Email_TextChanged"/>
+                    </StackPanel>
+                </Border>
+                <Button x:Name="BtnEmailSave" Content="Сохранить изменения" Click="BtnSaveEmail_Click" Background="Transparent" Visibility="Hidden" BorderThickness="0" Margin="20 15 0 0"/>
+            </StackPanel>
+            <TextBlock Name="txtHistoryOne" Text="История покупок:" Foreground="White" FontSize="30" Margin="0 95"/>
+        </StackPanel>
+        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Margin="30">
+            <Button x:Name="InsertUser" Content="Пользователи" Click="InsertUser_Click" Width="150" Cursor="Hand"/>
+            <Button x:Name="ViewUserApplications" Content="Заявки" Click="ViewUserApplications_Click" Width="150" Margin="0 30 0 0" Cursor="Hand"/>
+        </StackPanel>
+        <TextBlock x:Name="txtHistoryTwo" Text="Истории покупок нет" FontSize="50" Foreground="LightGray" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2">
+            <ItemsControl x:Name="ListViewCatalogCars" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Border CornerRadius="5" Background="LightGray" Width="1000" Margin="30 10 0 0">
+                                <Grid VerticalAlignment="Center">
+                                    <TextBlock Margin="10 0 0 0" HorizontalAlignment="Left" Foreground="Black"
+                                               FontSize="20" VerticalAlignment="Center">
+                                                <Run Text="{Binding WarehouseAutopart.Type_item}"/>
+                                                <Run Text="{Binding WarehouseAutopart.Name_item}"/>
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" Margin="0 10 0 10" HorizontalAlignment="Right"
+                                                        VerticalAlignment="Center">
+                                        <TextBlock VerticalAlignment="Center">
+                                                    <Run Text="{Binding WarehouseAutopart.Price}"/>
+                                                    <Run Text="$ за 1/шт"/>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding AmountItem}" VerticalAlignment="Center" Margin="15 0 0 0" />
+                                        <TextBlock Text="шт. в заказе" Width="100" VerticalAlignment="Center" Margin="5 0 15 0" />
+                                        <Button Width="100" Content="Удалить" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"
+                                                        Foreground="Red" Click="BtnRemove_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

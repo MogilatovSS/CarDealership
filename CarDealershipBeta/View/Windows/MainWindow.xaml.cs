@@ -89,13 +89,14 @@ namespace CarDealershipBeta
             MenuHumburger.Visibility = Visibility.Hidden;
         }
 
-        private void LogOutButton_Click(object sender, RoutedEventArgs e)
+        public void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             MainViewModel.currentUser = 0;
             WarehouseButton.Visibility = Visibility.Hidden;
             LogOutButton.Visibility = Visibility.Hidden;
             LogInButton.Visibility = Visibility.Visible;
-            Name_User.Visibility = Visibility.Hidden; 
+            Name_User.Visibility = Visibility.Hidden;
+            Timer.Visibility = Visibility.Hidden;
             MainFrame.Navigate(null);
             MenuHumburger.Visibility = Visibility.Hidden;
         }

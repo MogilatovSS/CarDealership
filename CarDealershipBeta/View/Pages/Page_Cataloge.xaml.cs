@@ -31,14 +31,11 @@ namespace CarDealershipBeta.View.Pages
         {
             if (Visibility == Visibility.Visible)
             {
-                DataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                ListViewCatalogCars.ItemsSource = DataBaseEntities.GetContext().Car.ToList();
+                YourRoadDataBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                ListViewCatalogCars.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.ToList();
 
-                Marka.ItemsSource = DataBaseEntities.GetContext().Car.Select(c => c.Name).Distinct().ToList();
-                Carcase.ItemsSource = DataBaseEntities.GetContext().Car.Select(c => c.Carcase).Distinct().ToList();
-                Year.ItemsSource = DataBaseEntities.GetContext().Car.Select(c => c.Year).Distinct().ToList();
-                Hatch.ItemsSource = DataBaseEntities.GetContext().Car.Select(c => c.Hatch).Distinct().ToList();
-                Drive_unit.ItemsSource = DataBaseEntities.GetContext().Car.Select(c => c.Drive_unit).Distinct().ToList();
+                Marka.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.Select(c => c.Name).Distinct().ToList();
+                Year.ItemsSource = YourRoadDataBaseEntities.GetContext().Car.Select(c => c.Year).Distinct().ToList();
 
                 Marka.Foreground = Brushes.White;
                 Carcase.Foreground = Brushes.White;
@@ -70,17 +67,27 @@ namespace CarDealershipBeta.View.Pages
 
         private void UpdateFiltrCars()
         {
-            var currentCar = DataBaseEntities.GetContext().Car.ToList();
+            var currentCar = YourRoadDataBaseEntities.GetContext().Car.ToList();
 
-            currentCar = currentCar.Where(c => (Marka.SelectedItem as String == null || c.Name == Marka.SelectedItem as String) &&
-            (Carcase.SelectedItem as String == null || c.Carcase == Carcase.SelectedItem as String) &&
-            (Year.SelectedItem as String == null || c.Year == Year.SelectedItem as String) &&
-            (Hatch.SelectedItem as String == null || c.Hatch == Hatch.SelectedItem as String) &&
-            (Drive_unit.SelectedItem as String == null || c.Drive_unit == Drive_unit.SelectedItem as String)).
-                Where(c => c.Name.ToLower().Contains(NameFilter.Text.ToLower()) || c.Model.ToLower().Contains(NameFilter.Text.ToLower())).ToList();
+            var filterText = NameFilter.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            currentCar = currentCar.Where(c =>
+                (Marka.SelectedItem as String == null || c.Name == Marka.SelectedItem as String) &&
+                (Year.SelectedItem as String == null || c.Year == Year.SelectedItem as String) &&
+                (
+                    filterText.Length == 0 ||
+                    filterText.All(word =>
+                        c.GetType().GetProperties().Any(property =>
+                            property.GetValue(c)?.ToString().ToLower().Contains(word) ?? false
+                        )
+                    )
+                )
+            ).ToList();
 
             ListViewCatalogCars.ItemsSource = currentCar.ToList();
         }
+
+
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             Marka.SelectedValue = null;
@@ -99,7 +106,7 @@ namespace CarDealershipBeta.View.Pages
         //    string[] searchTerms = NameFilter.Text.Split(' ');
         //    foreach (string searchTerm in searchTerms)
         //    {
-        //        var resultSearch = DataBaseEntities.GetContext().Car.
+        //        var resultSearch = YourRoadDataBaseEntities.GetContext().Car.
         //            Where(c => c.Name.ToLower().Contains(searchTerm.ToLower()) ||
         //            c.Model.ToLower().Contains(searchTerm.ToLower())).ToList();
 

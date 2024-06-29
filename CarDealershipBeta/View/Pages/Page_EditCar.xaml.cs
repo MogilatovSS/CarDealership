@@ -54,11 +54,11 @@ namespace CarDealershipBeta.View.Pages
             }
 
             if (currentCar.Car_id == 0)
-                DataBaseEntities.GetContext().Car.AddOrUpdate(currentCar);
+                YourRoadDataBaseEntities.GetContext().Car.AddOrUpdate(currentCar);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
                 MessageBox.Show("Информация сохранена");
             }
             catch (Exception ex)

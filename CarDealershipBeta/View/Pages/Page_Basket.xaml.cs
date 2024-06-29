@@ -33,18 +33,18 @@ namespace CarDealershipBeta.View.Pages
 
         private void Buy_Click(object sender, RoutedEventArgs e)
         {
-            var autoparts = DataBaseEntities.GetContext().BasketAutopart.
+            var autoparts = YourRoadDataBaseEntities.GetContext().BasketAutopart.
                 Where(a => a.User_id == MainViewModel.currentUser && a.Sold == false || a.Sold == null).ToList();
-            var user = DataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser);
+            var user = YourRoadDataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser);
 
             foreach (var currentAutopart in autoparts)
             {
                 currentAutopart.Sold = true;
-                DataBaseEntities.GetContext().BasketAutopart.AddOrUpdate(currentAutopart);
+                YourRoadDataBaseEntities.GetContext().BasketAutopart.AddOrUpdate(currentAutopart);
 
                 try
                 {
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +85,7 @@ namespace CarDealershipBeta.View.Pages
         }
         private void Reload()
         {
-            var autoparts = DataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == false || a.Sold == null).ToList();
+            var autoparts = YourRoadDataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == false || a.Sold == null).ToList();
             sumMoney = 0;
 
             foreach (var currentAutopart in autoparts)
@@ -116,11 +116,11 @@ namespace CarDealershipBeta.View.Pages
 
             if (selectedAutopart != null)
             {
-                DataBaseEntities.GetContext().BasketAutopart.Remove(selectedAutopart);
+                YourRoadDataBaseEntities.GetContext().BasketAutopart.Remove(selectedAutopart);
 
                 try
                 {
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                 }
                 catch (Exception ex)
                 {

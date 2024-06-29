@@ -40,8 +40,8 @@ namespace CarDealershipBeta.View.Pages
 
                 try
                 {
-                    DataBaseEntities.GetContext().SaveChanges();
-                    _user = DataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser); 
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
+                    _user = YourRoadDataBaseEntities.GetContext().User.SingleOrDefault(u => u.User_id == MainViewModel.currentUser); 
                     DataContext = _user; 
                 }
                 catch (Exception ex)
@@ -55,15 +55,17 @@ namespace CarDealershipBeta.View.Pages
         private void Reload()
         {
 
-            var user = DataBaseEntities.GetContext().User.FirstOrDefault(u => u.User_id == MainViewModel.currentUser);
-            var autoparts = DataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == true).ToList();
+            var user = YourRoadDataBaseEntities.GetContext().User.FirstOrDefault(u => u.User_id == MainViewModel.currentUser);
+            var autoparts = YourRoadDataBaseEntities.GetContext().BasketAutopart.Where(a => a.User_id == MainViewModel.currentUser && a.Sold == true).ToList();
 
             BtnEmailSave.Visibility = Visibility.Hidden;
             BtnLogInSave.Visibility = Visibility.Hidden;
             InsertUser.Visibility = Visibility.Hidden;
+            JournalWorks.Visibility = Visibility.Hidden;
+            OrderDocument.Visibility = Visibility.Hidden;
             ViewUserApplications.Visibility = Visibility.Hidden;
 
-            if (user == null)
+            if (user == null || user.User_id == 0)
                 return;
 
             GridProfile.Visibility = Visibility.Visible;
@@ -86,12 +88,29 @@ namespace CarDealershipBeta.View.Pages
             {
                 InsertUser.Visibility = Visibility.Visible;
                 ViewUserApplications.Visibility = Visibility.Visible;
+                JournalWorks.Visibility= Visibility.Visible;
+                OrderDocument.Visibility= Visibility.Visible;
                 return;
             }
 
             if (MainViewModel.typeUser == "call")
             {
                 ViewUserApplications.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (MainViewModel.typeUser == "service")
+            {
+                JournalWorks.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (MainViewModel.typeUser == "master")
+            {
+                ViewUserApplications.Visibility = Visibility.Visible;
+                JournalWorks.Visibility = Visibility.Visible;
+                OrderDocument.Visibility = Visibility.Visible;
+                return;
             }
         }
 
@@ -109,11 +128,11 @@ namespace CarDealershipBeta.View.Pages
 
             if (selectedAutopart != null)
             {
-                DataBaseEntities.GetContext().BasketAutopart.Remove(selectedAutopart);
+                YourRoadDataBaseEntities.GetContext().BasketAutopart.Remove(selectedAutopart);
 
                 try
                 {
-                    DataBaseEntities.GetContext().SaveChanges();
+                    YourRoadDataBaseEntities.GetContext().SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -136,11 +155,11 @@ namespace CarDealershipBeta.View.Pages
         private void BtnSaveLogin_Click(object sender, RoutedEventArgs e)
         {
             _user.Login = textLogin.Text;
-            DataBaseEntities.GetContext().User.AddOrUpdate(_user);
+            YourRoadDataBaseEntities.GetContext().User.AddOrUpdate(_user);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
             }
             catch (Exception ex)
             {
@@ -155,11 +174,11 @@ namespace CarDealershipBeta.View.Pages
         private void BtnSaveEmail_Click(object sender, RoutedEventArgs e)
         {
             _user.Email = textEmail.Text;
-            DataBaseEntities.GetContext().User.AddOrUpdate(_user);
+            YourRoadDataBaseEntities.GetContext().User.AddOrUpdate(_user);
 
             try
             {
-                DataBaseEntities.GetContext().SaveChanges();
+                YourRoadDataBaseEntities.GetContext().SaveChanges();
             }
             catch (Exception ex)
             {
@@ -179,6 +198,16 @@ namespace CarDealershipBeta.View.Pages
         private void ViewUserApplications_Click(object sender, RoutedEventArgs e)
         {
             MainViewModel.MainFrame.Navigate(new Page_Applications());
+        }
+
+        private void OrderDocument_Click(object sender, RoutedEventArgs e)
+        {
+            MainViewModel.MainFrame.Navigate(new Page_OrderDocument());
+        }
+
+        private void JournalWorks_Click(object sender, RoutedEventArgs e)
+        {
+            MainViewModel.MainFrame.Navigate(new Page_JournalWorks());
         }
     }
 }
